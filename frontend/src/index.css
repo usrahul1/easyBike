@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&family=Space+Grotesk:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
 @import "tailwindcss";
 /* @import "tailwindcss/preflight"; */
 /* @import "tailwindcss/utilities"; */
@@ -9,6 +11,7 @@
 	--font-space: "Space Grotesk", sans-serif;
 	--font-rubik: "Rubik Moonrocks", sans-serif;
 	--font-eczr: "Eczar", serif;
+	--font-lg: "Luckiest Guy", cursive;
 }
 
 .eB {
@@ -61,6 +64,19 @@
 }
 .eB:hover span:nth-child(3) {
 	transform: translateY(-50%) scaleY(1);
+}
+
+@keyframes spin-slow {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.animate-spin-slow {
+	animation: spin-slow 10s linear infinite;
 }
 
 /* @layer base {

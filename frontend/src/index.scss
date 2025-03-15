@@ -1,0 +1,39 @@
+.circular {
+	width: 240px;
+	height: 240px;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	.text {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+
+		span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform-origin: 0 120px; // Half of the container's size
+			font-size: 18px;
+			font-weight: bold;
+			color: black;
+		}
+	}
+
+	// Center the button inside the circle
+	.circle-btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 60px;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: transparent;
+	}
+}
