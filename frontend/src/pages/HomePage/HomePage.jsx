@@ -2,15 +2,24 @@ import { useEffect, useState, useRef } from "react";
 import logo from "../../assets/easyBike.png";
 import InstagramIcon from "../../icons/Insta";
 import Fb from "../../icons/Fb";
-import { House, ChartColumnStacked, Bike, ArrowUp } from "lucide-react";
+import { House, Bike, ArrowUp, UsersRound } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import styles from "./HomePage.module.css";
 import CircularText from "../../components/CircularText/CircularText";
+import CarouselCard from "../../components/CarouselCards/CarouselCard";
+import Footer from "../../components/Footer/Footer";
 
 const HomePage = () => {
 	const [hover, setHover] = useState(false);
 	const textRef = useRef(null);
+	const firstScreenRef = useRef(null);
+
+	const handleScroll = () => {
+		document
+			.getElementById("secondScreen")
+			.scrollIntoView({ behavior: "smooth" });
+	};
 
 	useEffect(() => {
 		if (!textRef.current) return;
@@ -35,7 +44,11 @@ const HomePage = () => {
 
 	return (
 		<>
-			<div className="firstScreen w-full">
+			<div
+				ref={firstScreenRef}
+				id="firstScreen"
+				className="firstScreen bg-[#2F2F2F] w-full"
+			>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4  h-screen">
 					{/* Left side */}
 					<div className="flex flex-col justify-between bg-[#00d74f] rounded-r-[40%]">
@@ -81,28 +94,30 @@ const HomePage = () => {
 									<span>Home</span>
 								</h3>
 								<h3
-									data-aos="fade-left"
-									className={`${styles.categoryLink} flex gap-1 cursor-pointer`}
-								>
-									<ChartColumnStacked />
-									<span>Category</span>
-								</h3>
-								<h3
 									data-aos="fade-right"
 									className={`${styles.rentBikesLink} flex gap-1 cursor-pointer`}
 								>
 									<Bike />
 									<span>Rent Bikes</span>
 								</h3>
+								<h3
+									data-aos="fade-left"
+									className={`${styles.categoryLink} flex gap-1 cursor-pointer`}
+								>
+									<UsersRound />
+									<span>About</span>
+								</h3>
 							</div>
 						</div>
 
 						{/* Scroll Indicator */}
 						<div className="scroll">
-							<h3 className="[writing-mode:vertical-rl] rotate-180 ml-2 flex gap-2 cursor-pointer text-black border-2 w-fit px-2 py-1 mb-1 rounded-md font-medium">
-								<ArrowUp />
-								Scroll Down
-							</h3>
+							<button onClick={handleScroll}>
+								<h3 className="[writing-mode:vertical-rl] rotate-180 ml-2 flex gap-2 cursor-pointer text-black border-2 w-fit px-2 py-1 mb-1 rounded-md font-medium">
+									<ArrowUp />
+									Scroll Down
+								</h3>
+							</button>
 						</div>
 					</div>
 
@@ -115,9 +130,25 @@ const HomePage = () => {
 				</div>
 
 				{/* Second Screen */}
-				<div className="secondScreen w-full"></div>
+				<div id="secondScreen" className="secondScreen w-full"></div>
 			</div>
-			<div className="secondScreen h-screen w-full"></div>
+			<div className="secondScreen bg-[#2F2F2F] h-full w-full">
+				<CarouselCard />
+			</div>
+			<div className="thirdScreen bg-[#2F2F2F]">
+				<div className="w-full flex justify-center gap-5 pb-5 text-xl items-center">
+					<h1 className="text-white select-none text-2xl">
+						Ready to give us a try?
+					</h1>
+					<a className={`${styles.login} rounded-lg cursor-pointer`}>
+						<span className="font-lg">Log In</span>
+						<span className="font-space">Log In</span>
+						<span className="font-rubik">Log In</span>
+						<span className="font-eczr">Log In</span>
+					</a>
+				</div>
+			</div>
+			<Footer firstScreenRef={firstScreenRef} />
 		</>
 	);
 };
