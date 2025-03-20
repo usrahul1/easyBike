@@ -9,6 +9,7 @@ import styles from "./HomePage.module.css";
 import CircularText from "../../components/CircularText/CircularText";
 import CarouselCard from "../../components/CarouselCards/CarouselCard";
 import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
 	const [hover, setHover] = useState(false);
@@ -140,12 +141,15 @@ const HomePage = () => {
 					<h1 className="text-white select-none text-2xl">
 						Ready to give us a try?
 					</h1>
-					<a className={`${styles.login} rounded-lg cursor-pointer`}>
+					<Link
+						to="/login"
+						className={`${styles.login} rounded-lg cursor-pointer`}
+					>
 						<span className="font-lg">Log In</span>
 						<span className="font-space">Log In</span>
 						<span className="font-rubik">Log In</span>
 						<span className="font-eczr">Log In</span>
-					</a>
+					</Link>
 				</div>
 			</div>
 			<Footer firstScreenRef={firstScreenRef} />

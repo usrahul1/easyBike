@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./CircularText.module.css";
-import gif from "../../assets/bike.gif"; // Adjust the path as needed
+import gif from "../../assets/bike.gif";
+import { Link } from "react-router-dom";
 
 const CircularText = () => {
 	return (
@@ -25,9 +26,9 @@ const CircularText = () => {
 
 			{/* Button in the center */}
 			<div className={styles.cBCont}>
-				<button type="submit" className={styles.circularButton}>
+				<Link to="/login" className={styles.circularButton}>
 					<img src={gif} alt="GIF" className={styles.circularImage} />
-				</button>
+				</Link>
 			</div>
 		</div>
 	);
