@@ -19,7 +19,8 @@ const CircularText = () => {
 
 				<text className={styles.circularText}>
 					<textPath href="#circlePath" startOffset="0%">
-						One Login. Endless roads to ride. Click on Me.
+						One Login.&nbsp;&nbsp;&nbsp;Endless roads to
+						ride.&nbsp;&nbsp;&nbsp;Click on Me.
 					</textPath>
 				</text>
 			</svg>

@@ -47,7 +47,7 @@ const HomePage = () => {
 		<>
 			<div
 				ref={firstScreenRef}
-				id="firstScreen"
+				id="6firstScreen"
 				className="firstScreen bg-[#2F2F2F] w-full"
 			>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4  h-screen">
@@ -89,24 +89,24 @@ const HomePage = () => {
 							<div className="flex flex-col gap-5">
 								<h3
 									data-aos="fade-right"
-									className={`${styles.homeLink} flex gap-1 cursor-pointer`}
+									className={`${styles.homeLink} flex gap-1 cursor-pointer items-center`}
 								>
 									<House />
-									<span>Home</span>
+									<span className="text-2xl">Home</span>
 								</h3>
 								<h3
 									data-aos="fade-right"
-									className={`${styles.rentBikesLink} flex gap-1 cursor-pointer`}
+									className={`${styles.rentBikesLink} flex gap-1 cursor-pointer items-center`}
 								>
 									<Bike />
-									<span>Rent Bikes</span>
+									<span className="text-2xl">Rent Bikes</span>
 								</h3>
 								<h3
 									data-aos="fade-left"
-									className={`${styles.categoryLink} flex gap-1 cursor-pointer`}
+									className={`${styles.categoryLink} flex gap-1 cursor-pointer items-center`}
 								>
 									<UsersRound />
-									<span>About</span>
+									<span className="text-2xl">About</span>
 								</h3>
 							</div>
 						</div>
@@ -138,7 +138,7 @@ const HomePage = () => {
 			</div>
 			<div className="thirdScreen bg-[#2F2F2F]">
 				<div className="w-full flex justify-center gap-5 pb-5 text-xl items-center">
-					<h1 className="text-white select-none text-2xl">
+					<h1 className="text-white select-none text-3xl">
 						Ready to give us a try?
 					</h1>
 					<Link

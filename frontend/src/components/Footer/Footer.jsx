@@ -8,7 +8,7 @@ const Footer = ({ firstScreenRef }) => {
 	};
 
 	return (
-		<footer className="flex flex-col gap-4 bg-[#525050] justify-around pb-4 pt-4 items-center text-lg  text-[#201919] font-[500]">
+		<footer className="flex flex-col gap-4 bg-[#525050] justify-around pb-4 pt-4 items-center text-lg  text-[#fafafa] font-[500]">
 			<div className="flex gap-5">
 				<a className="cursor-pointer">
 					<h4>Home</h4>
