@@ -1,4 +1,5 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, createContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { LayoutDashboard } from "lucide-react";
 import SidebarItem from "../SidebarItem/SidebarItem";
 import Sidebar from "../Sidebar/Sidebar";
@@ -12,19 +13,19 @@ import {
 	Bike,
 } from "lucide-react";
 
-const SidebarMain = ({ expand }) => {
-	// useEffect(() => {
-	// 	console.log("useEffect triggered, activeItem:", activeItem);
-	// }, []);
+// export const SidebarContext = createContext();
+
+const SidebarMain = ({ expand, activeTab2 = null }) => {
+	const navigate = useNavigate();
+	// const [expanded, setExpanded] = useState(true);
 
 	const [activeTab, setActiveTab] = useState({
-		dashboard: true,
-		bike: false,
-		package: false,
-		receipt: false,
-		billings: false,
-		settings: false,
-		lifebuoy: false,
+		dashboard: activeTab2 === null || activeTab2 === "dashboard",
+		bike: activeTab2 === "bike",
+		package: activeTab2 === "package",
+		receipt: activeTab2 === "receipt",
+		settings: activeTab2 === "settings",
+		lifebuoy: activeTab2 === "lifebuoy",
 	});
 
 	const handleTabClick = (tabName) => {
@@ -37,7 +38,20 @@ const SidebarMain = ({ expand }) => {
 		});
 	};
 
+	console.log(activeTab2);
+
+	const activeTabKey = Object.keys(activeTab).find((key) => activeTab[key]);
+
+	useEffect(() => {
+		navigate(`/${activeTabKey}`);
+	}, [activeTab]);
+
+	// if (activeTab2 != null) {
+	// 	handleTabClick(activeTab2);
+	// }
+
 	return (
+		// <SidebarContext.Provider value={{ expanded, setExpanded }}>
 		<Sidebar expand={expand}>
 			<SidebarItem
 				icon={<LayoutDashboard size={20} />}
@@ -87,6 +101,7 @@ const SidebarMain = ({ expand }) => {
 				tabName={`lifebuoy`}
 			/>
 		</Sidebar>
+		// </SidebarContext.Provider>
 	);
 };
 

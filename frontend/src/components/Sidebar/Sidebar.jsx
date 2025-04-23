@@ -1,10 +1,11 @@
 import { ChevronFirst, MoreVertical, User, ChevronLast } from "lucide-react";
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 
 export const SidebarContext = createContext();
 
 const Sidebar = ({ children, expand }) => {
 	const [expanded, setExpanded] = useState(true);
+	// const { expanded, setExpanded } = useContext(SidebarContext);
 
 	return (
 		<SidebarContext.Provider value={{ expanded, setExpanded }}>
