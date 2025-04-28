@@ -8,6 +8,8 @@ import YourBookings from "./pages/Profile/profile_your-bookings/YourBookings";
 import Help from "./pages/Profile/profile_help/Help";
 import Settings from "./pages/Profile/profile_settings/Settings";
 import YourBillings from "./pages/Profile/profile_your-billings/YourBillings";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 const App = () => {
 	return (
@@ -21,6 +23,8 @@ const App = () => {
 				<Route path="/receipt" element={<YourBillings />} />
 				<Route path="/settings" element={<Settings />} />
 				<Route path="/lifebuoy" element={<Help />} />
+				<Route path="/about" element={<AboutPage />} />
+				<Route path="/admin" element={<AdminPage />} />
 			</Routes>
 		</div>
 	);

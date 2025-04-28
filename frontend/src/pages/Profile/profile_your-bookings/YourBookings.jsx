@@ -9,7 +9,12 @@ const YourBookings = () => {
 	return (
 		<div>
 			<SidebarMain expand={expand} activeTab2={`package`} />
-			bookings
+			<div
+				className={`h-screen ${isExpanded ? "ml-70" : "ml-17.5"}
+                `}
+			>
+				<h2>bookings page</h2>
+			</div>
 		</div>
 	);
 };

@@ -9,7 +9,12 @@ const YourBikes = () => {
 	return (
 		<div>
 			<SidebarMain expand={expand} activeTab2={`bike`} />
-			your bikes
+			<div
+				className={`h-screen ${isExpanded ? "ml-70" : "ml-17.5"}
+                `}
+			>
+				<h2>your bikes page</h2>
+			</div>
 		</div>
 	);
 };

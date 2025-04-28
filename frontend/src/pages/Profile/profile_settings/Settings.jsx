@@ -7,9 +7,14 @@ const Settings = () => {
 		setIsExpanded((prev) => !prev);
 	};
 	return (
-		<div>
+		<div className="relative">
 			<SidebarMain expand={expand} activeTab2={`settings`} />
-			settings
+			<div
+				className={`h-screen ${isExpanded ? "ml-70" : "ml-17.5"}
+                `}
+			>
+				<h2>settings</h2>
+			</div>
 		</div>
 	);
 };

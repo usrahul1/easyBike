@@ -7,9 +7,14 @@ const Help = () => {
 		setIsExpanded((prev) => !prev);
 	};
 	return (
-		<div>
+		<div className="relative">
 			<SidebarMain expand={expand} activeTab2={`lifebuoy`} />
-			Help page
+			<div
+				className={`h-screen ${isExpanded ? "ml-70" : "ml-17.5"}
+                `}
+			>
+				<h2>help page</h2>
+			</div>
 		</div>
 	);
 };

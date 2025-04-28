@@ -5,6 +5,7 @@ export const SidebarContext = createContext();
 
 const Sidebar = ({ children, expand }) => {
 	const [expanded, setExpanded] = useState(true);
+	const [verticalExpanded, setVerticalExpanded] = useState(false);
 	// const { expanded, setExpanded } = useContext(SidebarContext);
 
 	return (
@@ -28,6 +29,20 @@ const Sidebar = ({ children, expand }) => {
 
 					<ul className="flex-1 px-3"> {children}</ul>
 
+					{verticalExpanded ? (
+						<div className="">
+							<ul className="">
+								<li>
+									<button>Profile</button>
+								</li>
+								<li>
+									<button className="border-black">Logout</button>
+								</li>
+							</ul>
+						</div>
+					) : (
+						""
+					)}
 					<div className="border-t flex p-3">
 						<User
 							src="https://via.placeholder.com/40"
@@ -49,7 +64,16 @@ const Sidebar = ({ children, expand }) => {
 								</span>
 							</div>
 
-							{expanded ? <MoreVertical size={20} /> : ""}
+							{expanded ? (
+								<button
+									onClick={() => setVerticalExpanded((prev) => !prev)}
+									className="cursor-pointer"
+								>
+									<MoreVertical size={20} />
+								</button>
+							) : (
+								""
+							)}
 						</div>
 					</div>
 				</nav>

@@ -1,0 +1,55 @@
+.adminNavbarUl li {
+	display: inline-block;
+	position: relative;
+}
+
+.adminNavbarUl li::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 4px;
+	bottom: -2px;
+	left: 0;
+	background-color: #0087ca;
+	transform: scaleX(0);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+
+.adminNavbarUl li:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.adminNavbarH5 {
+	background: linear-gradient(
+		270deg,
+		#ff6ec4,
+		#7873f5,
+		#4ade80,
+		#facc15,
+		#ff6ec4
+	); /* colorful gradient */
+	background-size: 400% 400%;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: transform 0.3s ease, color 0.5s ease;
+	font-weight: 500;
+	font-size: 1.75rem;
+}
+.adminNavbarH5:hover {
+	animation: gradientMove 6s ease infinite;
+	transform: scale(1.1);
+}
+
+@keyframes gradientMove {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
