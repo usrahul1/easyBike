@@ -1,91 +1,125 @@
-import { React, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import styles from "./LoginPage.module.css";
-import { House } from "lucide-react";
-import Footer from "../../components/Footer/Footer";
 
 const LoginPage = () => {
-	const firstRef = useRef(null);
-	const [inputType, setInputType] = useState("pass");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const [isActive, setIsActive] = useState(false);
 
-	const toggleInputType = (e) => {
-		e.preventDefault();
-		setInputType((prev) => (prev === "pass" ? "text" : "pass"));
-	};
+	useEffect(() => {
+		const container = document.getElementById("container");
+		if (isActive) {
+			container.classList.add(styles.containerActive);
+		} else {
+			container.classList.remove(styles.containerActive);
+		}
+	}, [isActive]);
 
 	return (
-		<>
-			<div className={`${styles.container}`} ref={firstRef}>
-				<div className="text-white">
-					<Link to="/">
-						<h2
-							className={`flex absolute text-xl left-8 top-7 items-center gap-2 border-2 border-white px-2 py-2 pt-1 pb-1 rounded-lg cursor-pointer ${styles.home}`}
+		<div className={styles.loginWrapper}>
+			<div className={styles.container} id="container">
+				<div className={`${styles.formContainer} ${styles.signUp}`}>
+					<form className={styles.form}>
+						<h1
+							className={`text-xl font-bold cursor-pointer select-none ${styles.underline}`}
 						>
-							<House /> Home
-						</h2>
-					</Link>
-				</div>
-				<div className={styles.background}>
-					<div className={`${styles.shape} ${styles.shapeFirst}`}></div>
-					<div className={`${styles.shape} ${styles.shapeLast}`}></div>
-				</div>
-				<form className={styles.form}>
-					<h3 className={`${styles.heading} select-none`}>Login Here</h3>
-					<h4 className="text-white select-none text-xl">
-						Didn't sign up yet? <a className={styles.register}>Register Now!</a>
-					</h4>
-
-					<label className={styles.label} htmlFor="username">
-						Email
-					</label>
-					<input
-						className={styles.input}
-						type="email"
-						placeholder="Email"
-						id="email"
-						required
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-					/>
-
-					<label className={styles.label} htmlFor="password">
-						Password
-						<button onClick={toggleInputType} className="ml-2 text-white">
-							{inputType === "pass" ? (
-								<i className="fa-solid fa-eye-slash"></i>
-							) : (
-								<i className="fa-solid fa-eye"></i>
-							)}
-						</button>
-					</label>
-					<input
-						className={styles.input}
-						type={inputType === "pass" ? "password" : "text"}
-						placeholder="Password"
-						id="password"
-						required
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-
-					<button className={styles.button} type="submit">
-						Log In
-					</button>
-
-					<div className={styles.social}>
-						<div className={styles.google}>
-							<i className={`fab fa-google ${styles.icon}`}></i>Google
+							Create Account
+						</h1>
+						<div className={styles.socialIcons}>
+							<a href="#" className={styles.icon}>
+								<i className="fa-brands fa-google-plus-g"></i>
+							</a>
+							{/* <a href="#" className={styles.icon}>
+									<i className="fa-brands fa-facebook-f"></i>
+								</a>
+								<a href="#" className={styles.icon}>
+									<i className="fa-brands fa-github"></i>
+								</a>
+								<a href="#" className={styles.icon}>
+									<i className="fa-brands fa-linkedin-in"></i>
+								</a> */}
 						</div>
-						<div className={styles.google}>
-							<i className={`fa-brands fa-facebook ${styles.icon}`}></i>Facebook
+						<span className={styles.subText}>
+							or use your email for registration
+						</span>
+						<input className={styles.input} type="text" placeholder="Name" />
+						<input className={styles.input} type="email" placeholder="Email" />
+						<input
+							className={styles.input}
+							type="password"
+							placeholder="Password"
+						/>
+						<button type="button" className={`${styles.button} text-white`}>
+							Sign Up
+						</button>
+					</form>
+				</div>
+
+				<div className={`${styles.formContainer} ${styles.signIn}`}>
+					<form className={styles.form}>
+						<h1
+							className={`text-xl font-bold cursor-pointer select-none ${styles.underline}`}
+						>
+							Sign In
+						</h1>
+						<div className={styles.socialIcons}>
+							<a href="#" className={styles.icon}>
+								<i className="fa-brands fa-google-plus-g"></i>
+							</a>
+							{/* <a href="#" className={styles.icon}>
+								<i className="fa-brands fa-facebook-f"></i>
+							</a>
+							<a href="#" className={styles.icon}>
+								<i className="fa-brands fa-github"></i>
+							</a>
+							<a href="#" className={styles.icon}>
+								<i className="fa-brands fa-linkedin-in"></i>
+							</a> */}
+						</div>
+						<span className={styles.subText}>or use your email password</span>
+						<input className={styles.input} type="email" placeholder="Email" />
+						<input
+							className={styles.input}
+							type="password"
+							placeholder="Password"
+						/>
+						<a href="#" className={styles.link}>
+							Forget Your Password?
+						</a>
+						<button type="button" className={`${styles.button} text-white`}>
+							Sign In
+						</button>
+					</form>
+				</div>
+
+				<div className={styles.toggleContainer}>
+					<div className={styles.toggle}>
+						<div className={`${styles.togglePanel} ${styles.toggleLeft}`}>
+							<h1>Welcome Back!</h1>
+							<p className={styles.text}>
+								Enter your personal details to use all of site features
+							</p>
+							<button
+								className={`${styles.button} ${styles.hidden} text-black`}
+								onClick={() => setIsActive(false)}
+							>
+								Sign In
+							</button>
+						</div>
+						<div className={`${styles.togglePanel} ${styles.toggleRight}`}>
+							<h1>Hello, Friend!</h1>
+							<p className={styles.text}>
+								Register with your personal details to use all of site features
+							</p>
+							<button
+								className={`${styles.button} ${styles.hidden} text-black`}
+								onClick={() => setIsActive(true)}
+							>
+								Sign Up
+							</button>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
-			<Footer firstScreenRef={firstRef} />
-		</>
+		</div>
 	);
 };
 

@@ -18,7 +18,7 @@ const AdminPage = () => {
 				</div>
 				{/* Right Side */}
 				<div className="border border-black">
-					<div>
+					<div className="text-xl">
 						<h3>Recent Bookings</h3>
 					</div>
 				</div>
