@@ -3,6 +3,7 @@ import SidebarMain from "../../components/SidebarMain/SidebarMain";
 import styles from "./DashboardPage.module.css";
 import { useFirebase } from "../../context/Firebase";
 import { useNavigate } from "react-router-dom";
+import Sidebar2 from "../../components/Sidebar/Sidebar2";
 
 const DashboardPage = () => {
 	const [isExpanded, setIsExpanded] = useState(true);
@@ -18,12 +19,15 @@ const DashboardPage = () => {
 	}, [firebase, navigate]);
 
 	return (
-		<div className="relative">
-			<SidebarMain expand={expand} />
+		<div className="flex min-h-screen">
+			{/* <SidebarMain expand={expand} /> */}
+			<Sidebar2 expand={expand} />
 			<div
-				className={`grid grid-cols-2 h-screen
-                ${isExpanded ? "ml-70" : "ml-17.5"}
-                `}
+				// className={`
+				// ${isExpanded ? "ml-70" : "ml-17.5"}
+				className={`flex-1 overflow-auto relative z-10 grid grid-cols-2 h-screen ${
+					isExpanded ? "ml-64" : "ml-20"
+				}`}
 			>
 				<div className="">
 					<div className="">
