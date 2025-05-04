@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./LoginPage.module.css";
+import Navbar from "../../components/Navbar/Navbar";
+import { useFirebase } from "../../context/Firebase";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
 	const [isActive, setIsActive] = useState(false);
+	const firebase = useFirebase();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const container = document.getElementById("container");
@@ -13,6 +18,32 @@ const LoginPage = () => {
 		}
 	}, [isActive]);
 
+	useEffect(() => {
+		if (firebase.isLoggedIn) navigate("/dashboard");
+	}, [firebase, navigate]);
+
+	const [email, setEmail] = useState("");
+	const [pass, setPass] = useState("");
+	const [name, setName] = useState("");
+
+	const handleLogin = async (e) => {
+		e.preventDefault();
+		const res = await firebase.signIn(email, pass);
+		console.log(res);
+	};
+
+	const handleSignUp = async (e) => {
+		e.preventDefault();
+		const res = await firebase.createUser(email, pass, name);
+		console.log(res);
+	};
+
+	const handleGoogleSignIn = async (e) => {
+		e.preventDefault();
+		const res = await firebase.googleSignIn();
+		console.log(res);
+	};
+
 	return (
 		<div className={styles.loginWrapper}>
 			<div className={styles.container} id="container">
@@ -21,33 +52,45 @@ const LoginPage = () => {
 						<h1
 							className={`text-xl font-bold cursor-pointer select-none ${styles.underline}`}
 						>
-							Create Account
+							Join us!
 						</h1>
 						<div className={styles.socialIcons}>
-							<a href="#" className={styles.icon}>
-								<i className="fa-brands fa-google-plus-g"></i>
-							</a>
-							{/* <a href="#" className={styles.icon}>
-									<i className="fa-brands fa-facebook-f"></i>
-								</a>
-								<a href="#" className={styles.icon}>
-									<i className="fa-brands fa-github"></i>
-								</a>
-								<a href="#" className={styles.icon}>
-									<i className="fa-brands fa-linkedin-in"></i>
-								</a> */}
+							<button
+								onClick={handleGoogleSignIn}
+								className={`${styles.icon} cursor-pointer`}
+							>
+								<i className="fa-brands fa-google"></i>
+							</button>
 						</div>
 						<span className={styles.subText}>
 							or use your email for registration
 						</span>
-						<input className={styles.input} type="text" placeholder="Name" />
-						<input className={styles.input} type="email" placeholder="Email" />
 						<input
+							onChange={(e) => setName(e.target.value)}
+							value={name}
+							className={styles.input}
+							type="text"
+							placeholder="Name"
+						/>
+						<input
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
+							className={styles.input}
+							type="email"
+							placeholder="Email"
+						/>
+						<input
+							onChange={(e) => setPass(e.target.value)}
+							value={pass}
 							className={styles.input}
 							type="password"
 							placeholder="Password"
 						/>
-						<button type="button" className={`${styles.button} text-white`}>
+						<button
+							onClick={handleSignUp}
+							type="button"
+							className={`${styles.button} text-white`}
+						>
 							Sign Up
 						</button>
 					</form>
@@ -58,33 +101,36 @@ const LoginPage = () => {
 						<h1
 							className={`text-xl font-bold cursor-pointer select-none ${styles.underline}`}
 						>
-							Sign In
+							Welcome Back!
 						</h1>
 						<div className={styles.socialIcons}>
-							<a href="#" className={styles.icon}>
-								<i className="fa-brands fa-google-plus-g"></i>
-							</a>
-							{/* <a href="#" className={styles.icon}>
-								<i className="fa-brands fa-facebook-f"></i>
-							</a>
-							<a href="#" className={styles.icon}>
-								<i className="fa-brands fa-github"></i>
-							</a>
-							<a href="#" className={styles.icon}>
-								<i className="fa-brands fa-linkedin-in"></i>
-							</a> */}
+							<button
+								onClick={handleGoogleSignIn}
+								className={`${styles.icon} cursor-pointer`}
+							>
+								<i className="fa-brands fa-google"></i>
+							</button>
 						</div>
 						<span className={styles.subText}>or use your email password</span>
-						<input className={styles.input} type="email" placeholder="Email" />
 						<input
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
+							className={styles.input}
+							type="email"
+							placeholder="Email"
+						/>
+						<input
+							onChange={(e) => setPass(e.target.value)}
+							value={pass}
 							className={styles.input}
 							type="password"
 							placeholder="Password"
 						/>
-						<a href="#" className={styles.link}>
-							Forget Your Password?
-						</a>
-						<button type="button" className={`${styles.button} text-white`}>
+						<button
+							onClick={handleLogin}
+							type="button"
+							className={`${styles.button} text-white`}
+						>
 							Sign In
 						</button>
 					</form>
@@ -93,9 +139,9 @@ const LoginPage = () => {
 				<div className={styles.toggleContainer}>
 					<div className={styles.toggle}>
 						<div className={`${styles.togglePanel} ${styles.toggleLeft}`}>
-							<h1>Welcome Back!</h1>
+							<h1>Hehe first time?</h1>
 							<p className={styles.text}>
-								Enter your personal details to use all of site features
+								We won't make sure it's your last time! Register rn!
 							</p>
 							<button
 								className={`${styles.button} ${styles.hidden} text-black`}
@@ -105,10 +151,8 @@ const LoginPage = () => {
 							</button>
 						</div>
 						<div className={`${styles.togglePanel} ${styles.toggleRight}`}>
-							<h1>Hello, Friend!</h1>
-							<p className={styles.text}>
-								Register with your personal details to use all of site features
-							</p>
+							<h1>Hola, Rider!</h1>
+							<p className={styles.text}>Welcome back, sign in and enjoy!</p>
 							<button
 								className={`${styles.button} ${styles.hidden} text-black`}
 								onClick={() => setIsActive(true)}

@@ -1,9 +1,11 @@
 import { ChevronFirst, MoreVertical, User, ChevronLast } from "lucide-react";
 import React, { useState, createContext, useContext } from "react";
+import { useFirebase } from "../../context/Firebase";
 
 export const SidebarContext = createContext();
 
 const Sidebar = ({ children, expand }) => {
+	const firebase = useFirebase();
 	const [expanded, setExpanded] = useState(true);
 	const [verticalExpanded, setVerticalExpanded] = useState(false);
 	// const { expanded, setExpanded } = useContext(SidebarContext);
@@ -36,7 +38,9 @@ const Sidebar = ({ children, expand }) => {
 									<button>Profile</button>
 								</li>
 								<li>
-									<button className="border-black">Logout</button>
+									<button onClick={firebase.logOut} className="border-black">
+										Logout
+									</button>
 								</li>
 							</ul>
 						</div>

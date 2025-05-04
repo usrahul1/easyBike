@@ -1,12 +1,21 @@
 import { React, useEffect, useState } from "react";
 import SidebarMain from "../../components/SidebarMain/SidebarMain";
 import styles from "./DashboardPage.module.css";
+import { useFirebase } from "../../context/Firebase";
+import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
 	const [isExpanded, setIsExpanded] = useState(true);
 	const expand = () => {
 		setIsExpanded((prev) => !prev);
 	};
+
+	const navigate = useNavigate();
+	const firebase = useFirebase();
+
+	useEffect(() => {
+		if (!firebase.isLoggedIn) navigate("/login");
+	}, [firebase, navigate]);
 
 	return (
 		<div className="relative">
