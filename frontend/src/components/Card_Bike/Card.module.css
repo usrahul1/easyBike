@@ -1,60 +1,29 @@
-:root {
-	--surface-color: #fff;
-	--curve: 40;
-}
-
-.dashcenter {
-	display: inline-block;
-	position: relative;
-}
-
-.dashcenter::after {
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 4px;
-	bottom: -2px;
-	left: 0;
-	background-color: #0087ca;
-	transform: scaleX(0);
-	transform-origin: bottom right;
-	transition: transform 0.25s ease-out;
-}
-
-.dashcenter:hover::after {
-	transform: scaleX(1);
-	transform-origin: bottom left;
-}
-
-.cardContainer {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 2rem;
-	margin: 4rem 5vw;
-	padding: 0;
-	list-style-type: none;
-}
-
 .card {
-	position: relative;
+	/* position: relative;
 	display: block;
-	width: 35rem; /* Fixed width */
-	height: 25rem; /* Fixed height */
-	border-radius: calc(var(--curve) * 1px);
-	/* border-radius: 50px; */
+	height: 25rem;
+	height: 25rem;
+	width: 30rem;
+	height: fit-content;
+	border-radius: 40px;
 	overflow: hidden;
 	text-decoration: none;
-	background-color: #fff;
-	/* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Soft shadow */
+	background-color: #fff; */
+	position: relative;
+	display: block;
+	height: 100%;
+	border-radius: calc(var(--curve) * 1px);
+	overflow: hidden;
+	text-decoration: none;
 }
 
 .card__image {
+	/* height: 25rem;
+	height: 1000%;
+	width: 20rem; */
+	/* height: auto; */
 	width: 100%;
-	height: 100%;
-	object-fit: contain;
-	display: block;
-	border-radius: calc(var(--curve) * 1px);
+	height: auto;
 }
 
 .card__overlay {
@@ -142,3 +111,24 @@
 	display: flex;
 	flex-direction: column;
 }
+
+/* .card__price {
+	font-size: 1rem;
+	color: black;
+}
+
+.card__button {
+	background-color: #6a515e;
+	color: white;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+	width: fit-content;
+	align-self: center;
+}
+
+.card__text {
+	font-size: 0.9rem;
+	color: #333;
+} */
