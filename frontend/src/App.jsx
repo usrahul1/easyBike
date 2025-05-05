@@ -1,4 +1,5 @@
 import React from "react";
+import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage/HomePage";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -27,6 +28,8 @@ const App = () => {
 				<Route path="/about" element={<AboutPage />} />
 				<Route path="/admin" element={<AdminPage />} />
 			</Routes>
+
+			<Toaster />
 		</div>
 	);
 };

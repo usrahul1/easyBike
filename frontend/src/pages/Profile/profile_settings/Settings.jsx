@@ -10,14 +10,29 @@ const Settings = () => {
 	const firstScreenRef = useRef(null);
 	const navigate = useNavigate();
 	const firebase = useFirebase();
-	const [selectedImg, setSelectedImg] = useState(null);
 	const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
+	const [profile, setProfile] = useState(null);
+	const [profilePic, setProfilePic] = useState(null);
 
 	const expand = () => {
 		setIsExpanded((prev) => !prev);
 	};
 
-	useEffect(() => {}, [firebase, navigate]);
+	useEffect(() => {
+		const details = firebase.profDetails();
+		if (details) {
+			setProfile(details);
+			setProfilePic(details.photoURL);
+			// console.log("photo url", details.photoURL);
+		}
+	}, [firebase]);
+
+	useEffect(() => {
+		if (!firebase.isLoggedIn) {
+			navigate("/login");
+		}
+	}, [firebase, navigate]);
+
 	return (
 		<div className="flex min-h-screen">
 			<Sidebar2 expand={expand} />
@@ -38,18 +53,18 @@ const Settings = () => {
 							<div className="flex flex-col items-center gap-4">
 								<div className="relative">
 									<img
-										src={avatar}
+										src={profilePic}
 										alt="Profile"
-										className="size-32 rounded-full object-cover border-4"
+										className="size-32 rounded-full object-cover border-4 border-gray-300"
 									/>
 
 									<label
 										htmlFor="avatar-upload"
 										className={`
-                  absolute bottom-0 right-0 
-                  bg-base-content hover:scale-105
-                  p-2 rounded-full cursor-pointer 
-                  transition-all duration-200
+                absolute bottom-0 right-0 
+    	      	bg-base-content hover:scale-105
+                p-2 rounded-full cursor-pointer 
+                transition-all duration-200
                   ${
 										isUpdatingProfile ? "animate-pulse pointer-events-none" : ""
 									}
@@ -80,7 +95,7 @@ const Settings = () => {
 										Full Name
 									</div>
 									<p className="px-4 py-2.5 bg-base-200 rounded-lg border">
-										Rahul
+										{profile?.name || "Loading..."}
 									</p>
 								</div>
 
@@ -90,7 +105,7 @@ const Settings = () => {
 										Email Address
 									</div>
 									<p className="px-4 py-2.5 bg-base-200 rounded-lg border">
-										sairahulurumu@gmail.com
+										{profile?.email || "Loading..."}
 									</p>
 								</div>
 							</div>
@@ -102,7 +117,7 @@ const Settings = () => {
 								<div className="space-y-3 text-sm">
 									<div className="flex items-center justify-between py-2 border-b border-zinc-700">
 										<span>Member Since</span>
-										<span>10-8-2004</span>
+										<span>{profile?.createdAt || "Loading..."}</span>
 									</div>
 									<div className="flex items-center justify-between py-2">
 										<span>Account Status</span>

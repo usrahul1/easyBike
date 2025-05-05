@@ -3,6 +3,7 @@ import styles from "./LoginPage.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { useFirebase } from "../../context/Firebase";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
 	const [isActive, setIsActive] = useState(false);
@@ -19,7 +20,10 @@ const LoginPage = () => {
 	}, [isActive]);
 
 	useEffect(() => {
-		if (firebase.isLoggedIn) navigate("/dashboard");
+		if (firebase.isLoggedIn) {
+			toast.success("Logged In!");
+			navigate("/dashboard");
+		}
 	}, [firebase, navigate]);
 
 	const [email, setEmail] = useState("");

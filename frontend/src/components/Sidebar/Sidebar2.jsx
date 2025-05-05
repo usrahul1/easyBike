@@ -14,12 +14,17 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useFirebase } from "../../context/Firebase";
+import toast from "react-hot-toast";
 // import { logo } from "../../assets/avatar-removebg.png";
 
 const Sidebar2 = ({ expand }) => {
 	const [isSidebarOpen, setSidebarOpen] = useState(true);
 	const firebase = useFirebase();
 	const [verticalExpanded, setVerticalExpanded] = useState(false);
+	const logOutHandler = () => {
+		firebase.logOut();
+		toast.success("Logged Out!");
+	};
 
 	const SIDEBAR_ITEMS = [
 		{
@@ -132,7 +137,7 @@ const Sidebar2 = ({ expand }) => {
 									<button>Profile</button>
 								</li>
 								<li>
-									<button onClick={firebase.logOut} className="border-black">
+									<button onClick={logOutHandler} className="border-black">
 										Logout
 									</button>
 								</li>

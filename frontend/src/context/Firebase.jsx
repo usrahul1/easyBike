@@ -34,6 +34,7 @@ export const FirebaseProvider = (props) => {
 			if (user) {
 				setUser(user);
 				console.log(user);
+				profDetails();
 			} else setUser(null);
 		});
 	}, []);
@@ -53,9 +54,35 @@ export const FirebaseProvider = (props) => {
 
 	const logOut = async () => await signOut(firebaseAuth);
 
+	const profDetails = () => {
+		if (user) {
+			const rawDate = user.metadata.creationTime;
+			const dateOnly =
+				rawDate.split(", ")[1].split(" ")[0] +
+				" " +
+				rawDate.split(", ")[1].split(" ")[1] +
+				" " +
+				rawDate.split(", ")[1].split(" ")[2];
+			return {
+				name: user.displayName,
+				email: user.email,
+				photoURL: user.photoURL,
+				createdAt: dateOnly,
+			};
+		}
+		return null;
+	};
+
 	return (
 		<FirebaseContext.Provider
-			value={{ createUser, signIn, isLoggedIn, googleSignIn, logOut }}
+			value={{
+				createUser,
+				signIn,
+				isLoggedIn,
+				googleSignIn,
+				logOut,
+				profDetails,
+			}}
 		>
 			{props.children}
 		</FirebaseContext.Provider>
