@@ -32,7 +32,7 @@ const Sidebar2 = ({ expand }) => {
 			name: "Your Bikes",
 			icon: Bike,
 			color: "#8B5CF6",
-			href: "/bikes",
+			href: "/your_bikes",
 		},
 		{
 			name: "Sales",

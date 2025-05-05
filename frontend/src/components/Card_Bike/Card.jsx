@@ -6,7 +6,6 @@ const Card = ({
 	thumbUrl,
 	title,
 	status,
-	description,
 	price,
 	showButton,
 	onClick,
@@ -30,13 +29,10 @@ const Card = ({
 						</div>
 					</div>
 					<div className={styles.card__description}>
-						{price && <p className={styles.card__price}>Price: {price}</p>}
-						{showButton && (
-							<button className={styles.card__button} onClick={onClick}>
-								Order
-							</button>
-						)}
-						{description && <p className={styles.card__text}>{description}</p>}
+						<p className={styles.card__price}>Price: {price}</p>
+						<button className={styles.card__button} onClick={onClick}>
+							Order
+						</button>
 					</div>
 				</div>
 			</a>

@@ -1,0 +1,7 @@
+.cardContainer {
+	margin: 4rem 5vw;
+	display: flex;
+	gap: 2rem;
+	justify-content: flex-start; /* Optional: center-align rows */
+	flex-wrap: wrap;
+}
