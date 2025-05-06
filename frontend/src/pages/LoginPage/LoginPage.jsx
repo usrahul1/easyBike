@@ -21,7 +21,7 @@ const LoginPage = () => {
 
 	useEffect(() => {
 		if (firebase.isLoggedIn) {
-			toast.success("Logged In!");
+			toast.success("Hehe welcome! ^_^");
 			navigate("/dashboard");
 		}
 	}, [firebase, navigate]);
@@ -39,7 +39,9 @@ const LoginPage = () => {
 	const handleSignUp = async (e) => {
 		e.preventDefault();
 		const res = await firebase.createUser(email, pass, name);
-		console.log(res);
+		if (res == null) {
+			toast.error("Login failed! Try again >_<");
+		}
 	};
 
 	const handleGoogleSignIn = async (e) => {
@@ -60,6 +62,7 @@ const LoginPage = () => {
 						</h1>
 						<div className={styles.socialIcons}>
 							<button
+								type="button"
 								onClick={handleGoogleSignIn}
 								className={`${styles.icon} cursor-pointer`}
 							>
@@ -75,6 +78,7 @@ const LoginPage = () => {
 							className={styles.input}
 							type="text"
 							placeholder="Name"
+							required
 						/>
 						<input
 							onChange={(e) => setEmail(e.target.value)}
@@ -82,6 +86,7 @@ const LoginPage = () => {
 							className={styles.input}
 							type="email"
 							placeholder="Email"
+							required
 						/>
 						<input
 							onChange={(e) => setPass(e.target.value)}
@@ -89,10 +94,11 @@ const LoginPage = () => {
 							className={styles.input}
 							type="password"
 							placeholder="Password"
+							required
 						/>
 						<button
 							onClick={handleSignUp}
-							type="button"
+							type="submit"
 							className={`${styles.button} text-white`}
 						>
 							Sign Up
@@ -109,6 +115,7 @@ const LoginPage = () => {
 						</h1>
 						<div className={styles.socialIcons}>
 							<button
+								type="button"
 								onClick={handleGoogleSignIn}
 								className={`${styles.icon} cursor-pointer`}
 							>
@@ -122,6 +129,7 @@ const LoginPage = () => {
 							className={styles.input}
 							type="email"
 							placeholder="Email"
+							required
 						/>
 						<input
 							onChange={(e) => setPass(e.target.value)}
@@ -129,10 +137,11 @@ const LoginPage = () => {
 							className={styles.input}
 							type="password"
 							placeholder="Password"
+							required
 						/>
 						<button
 							onClick={handleLogin}
-							type="button"
+							type="submit"
 							className={`${styles.button} text-white`}
 						>
 							Sign In

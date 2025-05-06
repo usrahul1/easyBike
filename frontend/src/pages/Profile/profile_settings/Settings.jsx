@@ -12,7 +12,7 @@ const Settings = () => {
 	const firebase = useFirebase();
 	const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
 	const [profile, setProfile] = useState(null);
-	const [profilePic, setProfilePic] = useState(null);
+	const [profilePic, setProfilePic] = useState(avatar);
 
 	const expand = () => {
 		setIsExpanded((prev) => !prev);
@@ -22,8 +22,7 @@ const Settings = () => {
 		const details = firebase.profDetails();
 		if (details) {
 			setProfile(details);
-			setProfilePic(details.photoURL);
-			// console.log("photo url", details.photoURL);
+			if (details.photoURL != null) setProfilePic(details.photoURL);
 		}
 	}, [firebase]);
 

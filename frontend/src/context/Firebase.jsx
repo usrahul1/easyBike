@@ -8,7 +8,9 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 	signOut,
+	updateProfile,
 } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const FirebaseContext = createContext(null);
 
@@ -39,38 +41,82 @@ export const FirebaseProvider = (props) => {
 		});
 	}, []);
 
-	const createUser = (email, password, name) => {
-		return createUserWithEmailAndPassword(firebaseAuth, email, password);
+	const createUser = async (email, password, name) => {
+		try {
+			const userCredential = await createUserWithEmailAndPassword(
+				firebaseAuth,
+				email,
+				password
+			);
+			const user = userCredential.user;
+
+			await updateProfile(user, {
+				displayName: name,
+				photoURL: null,
+			});
+
+			return user;
+		} catch (error) {
+			toast.error(`Error: ${error.message}`);
+		}
 	};
 
-	const signIn = (email, password) => {
-		return signInWithEmailAndPassword(firebaseAuth, email, password);
+	const signIn = async (email, password) => {
+		try {
+			const userCredential = await signInWithEmailAndPassword(
+				firebaseAuth,
+				email,
+				password
+			);
+			toast.success("Logged in successfully!");
+			return userCredential;
+		} catch (error) {
+			console.error("Login failed:", error.message);
+			toast.error(`Login failed! ${error.message}`);
+			return null;
+		}
 	};
 
-	const googleSignIn = async () =>
-		await signInWithPopup(firebaseAuth, googleProvider);
+	const googleSignIn = async () => {
+		try {
+			await signInWithPopup(firebaseAuth, googleProvider);
+		} catch (error) {
+			toast.error(`Error: ${error.message}`);
+		}
+	};
 
 	const isLoggedIn = user ? true : false;
 
-	const logOut = async () => await signOut(firebaseAuth);
+	const logOut = async () => {
+		try {
+			await signOut(firebaseAuth);
+		} catch (error) {
+			toast.error(`Error: ${error.message}`);
+		}
+	};
 
 	const profDetails = () => {
-		if (user) {
-			const rawDate = user.metadata.creationTime;
-			const dateOnly =
-				rawDate.split(", ")[1].split(" ")[0] +
-				" " +
-				rawDate.split(", ")[1].split(" ")[1] +
-				" " +
-				rawDate.split(", ")[1].split(" ")[2];
-			return {
-				name: user.displayName,
-				email: user.email,
-				photoURL: user.photoURL,
-				createdAt: dateOnly,
-			};
+		try {
+			if (user) {
+				const rawDate = user.metadata.creationTime;
+				const dateOnly =
+					rawDate.split(", ")[1].split(" ")[0] +
+					" " +
+					rawDate.split(", ")[1].split(" ")[1] +
+					" " +
+					rawDate.split(", ")[1].split(" ")[2];
+				return {
+					name: user.displayName,
+					email: user.email,
+					photoURL: user.photoURL,
+					createdAt: dateOnly,
+				};
+			}
+			return null;
+		} catch (error) {
+			toast.error(`Error: ${error.message}`);
+			return null;
 		}
-		return null;
 	};
 
 	return (

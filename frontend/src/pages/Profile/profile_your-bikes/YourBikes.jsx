@@ -25,7 +25,7 @@ const YourBikes = () => {
 			{/* <SidebarMain expand={expand} activeTab2={`bike`} /> */}
 			<Sidebar2 expand={expand} />
 			<div
-				className={`h-screen} ${isExpanded ? "ml-64" : "ml-20"} flex-1`}
+				className={`h-screen ${isExpanded ? "ml-[18.75rem]" : "ml-20"} flex-1`}
 				ref={firstScreenRef}
 			>
 				<h2>your bikes page</h2>

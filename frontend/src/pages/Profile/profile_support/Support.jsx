@@ -4,6 +4,7 @@ import { useFirebase } from "../../../context/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Footer from "../../../components/Footer/Footer";
+import { motion } from "framer-motion";
 
 const Support = () => {
 	const firebase = useFirebase();
@@ -66,11 +67,13 @@ const Support = () => {
 	return (
 		<div className="flex min-h-screen">
 			<Sidebar2 expand={expand} />
-			<div
+			<motion.div
 				className={`h-screen m-auto font-bold text-2xl flex-col transition-[margin] duration-300 ease-in-out ${
-					isExpanded ? "ml-64" : "ml-20"
+					isExpanded ? "ml-[18.75rem]" : "ml-20"
 				} flex-1`}
 				ref={firstScreenRef}
+				animate={{ marginLeft: isExpanded ? 256 : 80 }}
+				transition={{ duration: 0.3, ease: "easeInOut" }}
 			>
 				<div className="h-screen m-auto font-bold text-2xl flex items-center justify-center">
 					<div className="flex flex-col items-center">
@@ -120,47 +123,33 @@ const Support = () => {
 						</h1>
 					</center>
 
-					<div className="flex flex-col items-center md:flex-row gap-8">
-						<form
-							id="contact-form"
-							className="form-horizontal p-6 rounded-lg flex-1 shadow-2xl"
-							role="form"
-						>
-							<div className="form-group mb-6">
-								<div className="col-sm-12">
-									<input
-										type="text"
-										className="form-control w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none"
-										id="name"
-										placeholder="Name"
-										name="name"
-										required
-									/>
-								</div>
-							</div>
+					<div className="flex justify-center items-center gap-6">
+						<form className="p-6 flex flex-col gap-2 rounded-lg shadow-2xl min-w-lg">
+							<input
+								type="text"
+								className="p-3 border-2 border-gray-300 rounded-lg focus:outline-none"
+								placeholder="Name"
+								name="name"
+								required
+							/>
 
-							<div className="form-group mb-6">
-								<div className="col-sm-12">
-									<input
-										type="email"
-										className="form-control w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none"
-										id="email"
-										placeholder="Email"
-										name="email"
-										required
-									/>
-								</div>
-							</div>
+							<input
+								type="email"
+								className="p-3 border-2 border-gray-300 rounded-lg focus:outline-none"
+								placeholder="Email"
+								name="email"
+								required
+							/>
 
 							<textarea
-								className="form-control w-full p-3 resize-none border-2 border-gray-300 rounded-lg focus:outline-none"
+								className="p-3 resize-none border-2 border-gray-300 rounded-lg focus:outline-none"
 								placeholder="Message"
 								name="message"
 								required
 							></textarea>
 
 							<button
-								className="btn btn-primary send-button w-fit p-2 mt-6 m-auto py-3  rounded-lg flex items-center justify-center hover:bg-gray-300 cursor-pointer transition-all"
+								className="w-fit p-2 mt-6 m-auto py-3 rounded-lg flex items-center justify-center hover:bg-gray-300 cursor-pointer transition-all"
 								id="submit"
 								type="submit"
 								value="SEND"
@@ -172,7 +161,7 @@ const Support = () => {
 							</button>
 						</form>
 
-						<div className="direct-contact-container flex-1">
+						<div className="flex p-4">
 							<ul className="contact-list space-y-4">
 								<li className="flex items-center gap-3 text-lg">
 									<i className="fa fa-map-marker fa-2x text-gray-600"></i>
@@ -201,7 +190,7 @@ const Support = () => {
 					</div>
 				</section>
 				<Footer firstScreenRef={firstScreenRef} />
-			</div>
+			</motion.div>
 		</div>
 	);
 };
