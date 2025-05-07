@@ -29,9 +29,11 @@ const Sidebar2 = ({ expand }) => {
 		firebase.logOut();
 		toast.success("Logged Out!");
 	};
+
 	useEffect(() => {
 		const details = firebase.profDetails();
 		if (details) {
+			console.log("details are: ", details);
 			setProfile(details);
 			if (details.photoURL != null) setProfilePic(details.photoURL);
 		}
@@ -82,11 +84,11 @@ const Sidebar2 = ({ expand }) => {
 				className={`fixed h-screen z-10 transition-all duration-300 ease-in-out flex-shrink-0 ${
 					isSidebarOpen ? "w-64" : "w-20"
 				}`}
-				animate={{ width: isSidebarOpen ? 300 : 80 }}
-				transition={{ duration: 0.3, ease: "easeInOut" }} // ✅ ADD THIS LINE
+				animate={{ width: isSidebarOpen ? 250 : 80 }}
+				transition={{ duration: 0.3, ease: "easeInOut" }}
 			>
 				<div className="h-full bg-white bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700">
-					<div className="flex  items-center justify-between">
+					<div className="flex items-center justify-between">
 						<motion.button
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.9 }}
@@ -96,7 +98,7 @@ const Sidebar2 = ({ expand }) => {
 							}}
 							className="p-2 rounded-full hover:bg-gray-300 transition-colors max-w-fit"
 						>
-							<Menu size={24} />
+							<Menu size={20} />
 						</motion.button>
 						{isSidebarOpen ? (
 							<motion.span
@@ -106,7 +108,7 @@ const Sidebar2 = ({ expand }) => {
 								exit={{ opacity: 0, width: 0 }}
 								transition={{ duration: 0.2, delay: 0.3 }}
 							>
-								<h1 className="select-none text-xl mr-2">easyBike</h1>
+								<h1 className="select-none text-base mr-2">easyBike</h1>
 								{/* <img src={logo} /> */}
 							</motion.span>
 						) : (
@@ -114,19 +116,16 @@ const Sidebar2 = ({ expand }) => {
 						)}
 					</div>
 
-					<nav className="mt-8 flex-grow">
+					<nav className="flex-grow mt-4">
 						{SIDEBAR_ITEMS.map((item) => {
 							return (
 								<Link key={item.href} to={item.href}>
-									<motion.div className="flex items-center gap-3 p-4 text-sm font-medium rounded-lg hover:bg-gray-300 transition-colors mb-2">
-										<item.icon
-											size={26}
-											style={{ color: item.color, minWidth: "20px" }}
-										/>
+									<motion.div className="flex items-center gap-2 p-4 font-[450] rounded-lg hover:bg-gray-300 transition-colors text-sm">
+										<item.icon size={16} style={{ color: item.color }} />
 										<AnimatePresence>
 											{isSidebarOpen && (
 												<motion.span
-													className="ml-4 whitespace-nowrap text-base"
+													className="ml-4 whitespace-nowrap text-sm"
 													initial={{ opacity: 0, width: 0 }}
 													animate={{ opacity: 1, width: "auto" }}
 													exit={{ opacity: 0, width: 0 }}
@@ -157,8 +156,8 @@ const Sidebar2 = ({ expand }) => {
 									exit={{ x: 20, opacity: 0 }}
 									transition={{ duration: 0.3 }}
 								>
-									<motion.button className="w-full py-2.5 flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-indigo-100 text-indigo-600 font-semibold hover:bg-indigo-200 transition-colors">
-										<User />
+									<motion.button className="text-sm w-full py-1.5 flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-indigo-100 text-indigo-600 font-semibold hover:bg-indigo-200 transition-colors">
+										<User size={16} />
 										Profile
 									</motion.button>
 								</motion.li>
@@ -170,9 +169,9 @@ const Sidebar2 = ({ expand }) => {
 								>
 									<motion.button
 										onClick={logOutHandler}
-										className="w-full py-2.5 rounded-lg flex cursor-pointer items-center justify-center gap-2 bg-rose-100 text-rose-600 font-semibold hover:bg-rose-200 transition-colors"
+										className="w-full text-sm py-1.5 rounded-lg flex cursor-pointer items-center justify-center gap-2 bg-rose-100 text-rose-600 font-semibold hover:bg-rose-200 transition-colors"
 									>
-										<LogOut />
+										<LogOut size={16} />
 										Logout
 									</motion.button>
 								</motion.li>
@@ -237,6 +236,7 @@ const Sidebar2 = ({ expand }) => {
 							isSidebarOpen ? "p-3" : "p-0"
 						}  justify-center items-center`}
 					>
+						{console.log(profilePic)}
 						<img
 							src={profilePic}
 							alt="User"
@@ -246,8 +246,8 @@ const Sidebar2 = ({ expand }) => {
 
 						<AnimatePresence>
 							<motion.div
-								className={`flex justify-between items-center ${
-									isSidebarOpen ? "w-[18.75rem]" : "w-0"
+								className={`flex gap-2 justify-between items-center ${
+									isSidebarOpen ? "w-[15.625rem]" : "w-0"
 								}`}
 							>
 								{isSidebarOpen && (
@@ -259,10 +259,10 @@ const Sidebar2 = ({ expand }) => {
 										transition={{ duration: 0.2, delay: 0.3 }}
 									>
 										<motion.div className="leading-4">
-											<h4 className="font-semibold">
+											<h4 className="font-semibold text-sm">
 												{profile?.name || "Loading..."}
 											</h4>
-											<span className="text-xs text-gray-600">
+											<span className="text-[0.6rem] text-gray-600">
 												{profile?.email || "Loading..."}
 											</span>
 										</motion.div>
@@ -273,7 +273,7 @@ const Sidebar2 = ({ expand }) => {
 										className=" cursor-pointer transition pr-2"
 										onClick={() => setVerticalExpanded((prev) => !prev)}
 									>
-										<MoreVertical size={20} className="text-gray-700" />
+										<MoreVertical size={18} className="text-gray-700" />
 									</button>
 								)}
 							</motion.div>
