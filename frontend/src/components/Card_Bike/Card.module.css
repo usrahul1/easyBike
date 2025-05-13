@@ -42,9 +42,10 @@
 	align-items: center;
 	gap: 2em;
 	padding: 2em;
+	padding-top: 1em;
 	border-radius: 40px 0 0 0;
 	background-color: #fff;
-	transform: translateY(-100%);
+	transform: translateY(-80%);
 	transition: 0.2s ease-in-out;
 }
 

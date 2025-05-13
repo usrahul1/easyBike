@@ -28,9 +28,14 @@ const Card = ({
 							<span className={styles.card__status}>{status}</span>
 						</div>
 					</div>
-					<div className={styles.card__description}>
-						<p className={styles.card__price}>Price: {price}</p>
-						<button className={styles.card__button} onClick={onClick}>
+					<div className={`${styles.card__description}`}>
+						<p className={`${styles.card__price} text-gray-700`}>
+							Price: {price}
+						</p>
+						<button
+							className={`${styles.card__button} cursor-pointer text-gray-700 hover:text-black`}
+							onClick={onClick}
+						>
 							Order
 						</button>
 					</div>

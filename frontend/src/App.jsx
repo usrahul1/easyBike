@@ -7,11 +7,13 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import YourBikes from "./pages/Profile/profile_your-bikes/YourBikes";
 import Settings from "./pages/Profile/profile_settings/Settings";
 import AboutPage from "./pages/AboutPage/AboutPage";
-import AdminPage from "./pages/AdminPage/AdminPage";
+// import AdminPage from "./pages/AdminPage/AdminPage";
 import Support from "./pages/Profile/profile_support/Support";
 import Layout from "./components/layout/Layout";
 import Sales from "./pages/Profile/profile_sales/Sales";
 import Orders from "./pages/Profile/profile_orders/Orders";
+import AppLayout from "./components/Admin/Admin Layout/adminLayout";
+import Home from "./pages/AdminPage/Dashboard/Home";
 
 const App = () => {
 	return (
@@ -26,7 +28,9 @@ const App = () => {
 				<Route path="/about" element={<AboutPage />} />
 				<Route path="/orders" element={<Orders />} />
 				<Route path="/sales" element={<Sales />} />
-				<Route path="/admin" element={<AdminPage />} />
+				<Route element={<AppLayout />}>
+					<Route path="/admin" element={<Home />} />
+				</Route>
 			</Routes>
 
 			<Toaster />
