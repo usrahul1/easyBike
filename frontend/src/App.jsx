@@ -14,6 +14,10 @@ import Sales from "./pages/Profile/profile_sales/Sales";
 import Orders from "./pages/Profile/profile_orders/Orders";
 import AppLayout from "./components/Admin/Admin Layout/adminLayout";
 import Home from "./pages/AdminPage/Dashboard/Home";
+import Bikes from "./pages/AdminPage/Tables/Bikes";
+import Profiles from "./pages/AdminPage/Tables/Profiles";
+import AllBikes from "./pages/AdminPage/Tables/AllBikes";
+import AllProfiles from "./pages/AdminPage/Tables/AllProfiles";
 
 const App = () => {
 	return (
@@ -21,7 +25,8 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/login" element={<LoginPage />} />
-				<Route path="/dashboard" element={<DashboardPage />} />
+				{/* <Route path="/dashboard" element={<DashboardPage />} /> */}
+				<Route path="/dashboard" element={<Layout />} />
 				<Route path="/your_bikes" element={<YourBikes />} />
 				<Route path="/settings" element={<Settings />} />
 				<Route path="/support" element={<Support />} />
@@ -30,6 +35,10 @@ const App = () => {
 				<Route path="/sales" element={<Sales />} />
 				<Route element={<AppLayout />}>
 					<Route path="/admin" element={<Home />} />
+					<Route path="/admin/bikes" element={<Bikes />} />
+					<Route path="/admin/profiles" element={<Profiles />} />
+					<Route path="/admin/all_bikes" element={<AllBikes />} />
+					<Route path="/admin/all_profiles" element={<AllProfiles />} />
 				</Route>
 			</Routes>
 

@@ -81,13 +81,13 @@ const Sidebar2 = ({ expand }) => {
 	return (
 		<>
 			<motion.div
-				className={`fixed h-screen z-10 transition-all duration-300 ease-in-out flex-shrink-0 ${
+				className={`h-screen transition-all duration-300 ease-in-out flex-shrink-0 ${
 					isSidebarOpen ? "w-64" : "w-20"
-				}`}
+				} `}
 				animate={{ width: isSidebarOpen ? 250 : 80 }}
 				transition={{ duration: 0.3, ease: "easeInOut" }}
 			>
-				<div className="h-full bg-white bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700">
+				<div className="h-full bg-white bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700 dark:bg-gray-900 dark:text-white">
 					<div className="flex items-center justify-between">
 						<motion.button
 							whileHover={{ scale: 1.1 }}

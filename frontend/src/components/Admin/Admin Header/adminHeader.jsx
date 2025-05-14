@@ -7,7 +7,7 @@ import UserDropdown from "../components/header/UserDropdown";
 const AppHeader = () => {
 	const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 	const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
-
+	
 	const handleToggle = () => {
 		if (window.innerWidth >= 1024) {
 			toggleSidebar();

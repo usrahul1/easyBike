@@ -1,47 +1,3 @@
-// import { React, useEffect, useState } from "react";
-// import SidebarMain from "../../components/SidebarMain/SidebarMain";
-// import styles from "./DashboardPage.module.css";
-// import { useFirebase } from "../../context/Firebase";
-// import { useNavigate } from "react-router-dom";
-// import Sidebar2 from "../../components/Sidebar/Sidebar2";
-
-// const DashboardPage = () => {
-// 	const [isExpanded, setIsExpanded] = useState(true);
-// 	const expand = () => {
-// 		setIsExpanded((prev) => !prev);
-// 	};
-
-// 	const navigate = useNavigate();
-// 	const firebase = useFirebase();
-
-// 	useEffect(() => {
-// 		if (!firebase.isLoggedIn) navigate("/login");
-// 	}, [firebase, navigate]);
-
-// 	return (
-// 		<div className="flex min-h-screen">
-// 			{/* <SidebarMain expand={expand} /> */}
-// 			<Sidebar2 expand={expand} />
-// 			<div
-// 				// className={`
-// 				// ${isExpanded ? "ml-70" : "ml-17.5"}
-// 				className={`flex-1 overflow-auto relative z-10 grid grid-cols-2 h-screen ${
-// 					isExpanded ? "ml-64" : "ml-20"
-// 				}`}
-// 			>
-// 				<div className="">
-// 					<div className="">
-// 						<ul className="list-none flex flex-col items-center justify-center flex-wrap"></ul>
-// 					</div>
-// 				</div>
-// 				<div className="bg-blue-200"></div>
-// 			</div>
-// 		</div>
-// 	);
-// };
-
-// export default DashboardPage;
-
 import React, { useEffect, useState } from "react";
 // import SidebarMain from "../../components/SidebarMain/SidebarMain";
 import styles from "./DashboardPage.module.css";
@@ -66,7 +22,7 @@ const DashboardPage = () => {
 	return (
 		<div className="flex min-h-screen">
 			{/* <SidebarMain expand={expand} /> */}
-			<Sidebar2 expand={expand} />
+			{/* <Sidebar2 expand={expand} /> */}
 			<div
 				className={`flex-1 overflow-auto relative z-10 grid grid-cols-2 h-screen ${
 					isExpanded ? "ml-64" : "ml-20"

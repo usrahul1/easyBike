@@ -66,7 +66,7 @@ const Support = () => {
 
 	return (
 		<div className="flex min-h-screen">
-			<Sidebar2 expand={expand} />
+			{/* <Sidebar2 expand={expand} /> */}
 			<motion.div
 				className={`h-screen m-auto font-bold text-2xl flex-col transition-[margin] duration-300 ease-in-out ${
 					isExpanded ? "ml-[18.75rem]" : "ml-20"

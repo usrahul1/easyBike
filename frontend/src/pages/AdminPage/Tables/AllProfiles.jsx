@@ -3,7 +3,7 @@ import ComponentCard from "../../../components/Admin/components/common/Component
 import PageMeta from "../../../components/Admin/components/common/PageMeta";
 import BasicTableOne from "../../../components/Admin/components/tables/BasicTables/BasicTableOne";
 
-export default function Profiles() {
+export default function AllProfiles() {
 	return (
 		<>
 			<PageMeta

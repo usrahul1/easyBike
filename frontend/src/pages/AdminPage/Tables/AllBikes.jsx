@@ -4,7 +4,7 @@ import PageMeta from "../../../components/Admin/components/common/PageMeta";
 // import BasicTableOne from "../../../components/Admin/components/tables/BasicTables/BasicTableOne";
 import BikeTable from "../../../components/Admin/components/tables/Bike Addition/BikeTable";
 
-export default function Bikes() {
+export default function AllBikes() {
 	return (
 		<>
 			<PageMeta
