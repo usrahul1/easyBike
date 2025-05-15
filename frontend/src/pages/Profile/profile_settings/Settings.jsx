@@ -6,17 +6,12 @@ import { User, Camera, Mail } from "lucide-react";
 import avatar from "../../../assets/avatar.png";
 
 const Settings = () => {
-	const [isExpanded, setIsExpanded] = useState(true);
 	const firstScreenRef = useRef(null);
 	const navigate = useNavigate();
 	const firebase = useFirebase();
 	const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
 	const [profile, setProfile] = useState(null);
 	const [profilePic, setProfilePic] = useState(avatar);
-
-	const expand = () => {
-		setIsExpanded((prev) => !prev);
-	};
 
 	useEffect(() => {
 		const details = firebase.profDetails();
@@ -34,11 +29,7 @@ const Settings = () => {
 
 	return (
 		<div className="flex min-h-screen">
-			<Sidebar2 expand={expand} />
-			<div
-				className={`h-screen} ${isExpanded ? "ml-64" : "ml-20"} flex-1`}
-				ref={firstScreenRef}
-			>
+			<div className={`h-screen} flex-1`} ref={firstScreenRef}>
 				<div className="h-screen">
 					<div className="max-w-2xl mx-auto p-4 py-8">
 						<div className="bg-base-300 rounded-xl p-6 space-y-8">

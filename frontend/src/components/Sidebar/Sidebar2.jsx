@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
 	Users,
 	DollarSign,
@@ -17,9 +17,10 @@ import { Link } from "react-router-dom";
 import { useFirebase } from "../../context/Firebase";
 import toast from "react-hot-toast";
 import avatar from "../../assets/avatar.png";
+import { SidebarContext } from "../../context/SidebarContext";
 
-const Sidebar2 = ({ expand }) => {
-	const [isSidebarOpen, setSidebarOpen] = useState(true);
+const Sidebar2 = () => {
+	const { isSidebarOpen, toggleSidebar } = useContext(SidebarContext);
 	const firebase = useFirebase();
 	const [verticalExpanded, setVerticalExpanded] = useState(false);
 	const [profilePic, setProfilePic] = useState(avatar);
@@ -33,7 +34,6 @@ const Sidebar2 = ({ expand }) => {
 	useEffect(() => {
 		const details = firebase.profDetails();
 		if (details) {
-			console.log("details are: ", details);
 			setProfile(details);
 			if (details.photoURL != null) setProfilePic(details.photoURL);
 		}
@@ -44,58 +44,53 @@ const Sidebar2 = ({ expand }) => {
 			name: "Dashboard",
 			icon: LayoutDashboard,
 			color: "#6366f1",
-			href: "/dashboard",
+			href: "/user/dashboard",
 		},
 		{
 			name: "Your Bikes",
 			icon: Bike,
 			color: "#8B5CF6",
-			href: "/your_bikes",
+			href: "/user/your_bikes",
 		},
 		{
 			name: "Sales",
 			icon: DollarSign,
 			color: "#10B981",
-			href: "/sales",
+			href: "/user/sales",
 		},
 		{
 			name: "Orders",
 			icon: ShoppingCart,
 			color: "#F59E0B",
-			href: "/orders",
+			href: "/user/orders",
 		},
 		{
 			name: "Settings",
 			icon: Settings,
 			color: "#6EE7B7",
-			href: "/settings",
+			href: "/user/settings",
 		},
 		{
 			name: "Support",
 			icon: LifeBuoy,
 			color: "#6EE7B7",
-			href: "/support",
+			href: "/user/support",
 		},
 	];
 
 	return (
 		<>
 			<motion.div
-				className={`h-screen transition-all duration-300 ease-in-out flex-shrink-0 ${
-					isSidebarOpen ? "w-64" : "w-20"
-				} `}
+				className={`h-screen transition-all duration-300 ease-in-out flex-shrink-0  text-gray-700 dark:text-gray-400`}
 				animate={{ width: isSidebarOpen ? 250 : 80 }}
 				transition={{ duration: 0.3, ease: "easeInOut" }}
 			>
-				<div className="h-full bg-white bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700 dark:bg-gray-900 dark:text-white">
+				<div className="h-full bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-400">
 					<div className="flex items-center justify-between">
 						<motion.button
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.9 }}
-							onClick={() => {
-								setSidebarOpen(!isSidebarOpen);
-								expand();
-							}}
+							onClick={toggleSidebar}
 							className="p-2 rounded-full hover:bg-gray-300 transition-colors max-w-fit"
 						>
 							<Menu size={20} />
@@ -179,64 +174,11 @@ const Sidebar2 = ({ expand }) => {
 						</motion.div>
 					) : null}
 
-					{/* <motion.div
-						className={`border-t flex ${
-							isSidebarOpen ? "p-3" : "p-0"
-						}  justify-center items-center`}
-					>
-						<button onClick={() => setVerticalExpanded((prev) => !prev)}>
-							<img
-								src={profilePic}
-								alt="User"
-								size={18}
-								className={`w-8 mt-2 cursor-pointer flex justify-center items-center
-									${isSidebarOpen ? "" : "mx-auto"} rounded-full`}
-							/>
-						</button>
-
-						<AnimatePresence>
-							<motion.div
-								className={`flex justify-between items-center ${
-									isSidebarOpen ? "w-64" : "w-0"
-								}`}
-							>
-								{isSidebarOpen && (
-									<motion.span
-										className="ml-4 whitespace-nowrap"
-										initial={{ opacity: 0, width: 0 }}
-										animate={{ opacity: 1, width: "auto" }}
-										exit={{ opacity: 0, width: 0 }}
-										transition={{ duration: 0.2, delay: 0.3 }}
-									>
-										<motion.div className="leading-4">
-											<h4 className="font-semibold">
-												{isSidebarOpen ? profile?.name : "Loading..."}
-											</h4>
-											<span className="text-xs text-gray-600">
-												{isSidebarOpen ? profile?.email : "Loading..."}
-											</span>
-										</motion.div>
-									</motion.span>
-								)}
-								{isSidebarOpen ? (
-									<button
-										className="border-2 border-black"
-										onClick={() => setVerticalExpanded((prev) => !prev)}
-									>
-										<MoreVertical size={20} />
-									</button>
-								) : (
-									""
-								)}
-							</motion.div>
-						</AnimatePresence>
-					</motion.div> */}
 					<motion.div
-						className={`border-t flex ${
+						className={`border-gray-200 dark:border-gray-800  flex ${
 							isSidebarOpen ? "p-3" : "p-0"
 						}  justify-center items-center`}
 					>
-						{console.log(profilePic)}
 						<img
 							src={profilePic}
 							alt="User"

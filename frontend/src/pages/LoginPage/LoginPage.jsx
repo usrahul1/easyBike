@@ -22,7 +22,7 @@ const LoginPage = () => {
 	useEffect(() => {
 		if (firebase.isLoggedIn) {
 			toast.success("Hehe welcome! ^_^");
-			navigate("/dashboard");
+			navigate("/user/dashboard");
 		}
 	}, [firebase, navigate]);
 

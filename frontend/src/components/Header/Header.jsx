@@ -5,6 +5,7 @@ import { ThemeToggleButton } from "../Admin/components/common/ThemeToggleButton"
 
 const Header = () => {
 	const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
+
 	// const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
 
 	// const handleToggle = () => {
@@ -34,6 +35,8 @@ const Header = () => {
 	// 		document.removeEventListener("keydown", handleKeyDown);
 	// 	};
 	// }, []);
+
+	const [isExpanded, setIsExpanded] = useState(true);
 
 	return (
 		<div className="sticky top-0 flex w-full bg-white border-gray-200 z-99999 dark:border-gray-800 dark:bg-gray-900 lg:border-b">

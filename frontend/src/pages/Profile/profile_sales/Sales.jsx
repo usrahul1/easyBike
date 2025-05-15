@@ -3,16 +3,7 @@ import { useFirebase } from "../../../context/Firebase";
 import Sidebar2 from "../../../components/Sidebar/Sidebar2";
 
 const Sales = () => {
-	const [isExpanded, setIsExpanded] = useState(true);
-
-	const expand = () => {
-		setIsExpanded((prev) => !prev);
-	};
-	return (
-		<div className="flex min-h-screen">
-			<Sidebar2 expand={expand} />
-		</div>
-	);
+	return <div className="flex min-h-screen">sales page</div>;
 };
 
 export default Sales;

@@ -9,16 +9,11 @@ import { motion } from "framer-motion";
 const Support = () => {
 	const firebase = useFirebase();
 	const navigate = useNavigate();
-	const [isExpanded, setIsExpanded] = useState(true);
 	const [openSection, setOpenSection] = useState(null);
 	const firstScreenRef = useRef(null);
 
 	const toggleSection = (sectionId) => {
 		setOpenSection((prev) => (prev === sectionId ? null : sectionId));
-	};
-
-	const expand = () => {
-		setIsExpanded((prev) => !prev);
 	};
 
 	useEffect(() => {
@@ -66,14 +61,9 @@ const Support = () => {
 
 	return (
 		<div className="flex min-h-screen">
-			{/* <Sidebar2 expand={expand} /> */}
 			<motion.div
-				className={`h-screen m-auto font-bold text-2xl flex-col transition-[margin] duration-300 ease-in-out ${
-					isExpanded ? "ml-[18.75rem]" : "ml-20"
-				} flex-1`}
+				className={`h-screen m-auto font-bold text-2xl flex-col flex-1`}
 				ref={firstScreenRef}
-				animate={{ marginLeft: isExpanded ? 256 : 80 }}
-				transition={{ duration: 0.3, ease: "easeInOut" }}
 			>
 				<div className="h-screen m-auto font-bold text-2xl flex items-center justify-center">
 					<div className="flex flex-col items-center">
@@ -189,7 +179,6 @@ const Support = () => {
 						</div>
 					</div>
 				</section>
-				<Footer firstScreenRef={firstScreenRef} />
 			</motion.div>
 		</div>
 	);

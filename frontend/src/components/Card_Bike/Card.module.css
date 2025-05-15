@@ -1,15 +1,12 @@
 .card {
 	position: relative;
 	display: block;
-	width: 25rem; /* Fixed width */
-	height: 15rem; /* Fixed height */
+	width: 25rem;
+	height: 15rem;
 	border-radius: calc(var(--curve) * 1px);
-	/* border-radius: 50px; */
 	overflow: hidden;
 	text-decoration: none;
-	background-color: #fff;
-	/* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Soft shadow */
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card__image {
@@ -27,7 +24,7 @@
 	right: 0;
 	z-index: 1;
 	border-radius: 40px;
-	background-color: #fff;
+	background-color: inherit;
 	transform: translateY(100%);
 	transition: 0.2s ease-in-out;
 }
@@ -44,7 +41,7 @@
 	padding: 2em;
 	padding-top: 1em;
 	border-radius: 40px 0 0 0;
-	background-color: #fff;
+	background-color: inherit;
 	transform: translateY(-80%);
 	transition: 0.2s ease-in-out;
 }
@@ -59,7 +56,6 @@
 }
 
 .card__arc path {
-	fill: #fff;
 	d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
 }
 
@@ -77,53 +73,21 @@
 .card__title {
 	font-size: 1em;
 	margin: 0 0 0.3em;
-	color: #6a515e;
 }
 
-.card__tagline {
-	display: block;
-	margin: 1em 0;
-	font-size: 0.8em;
-	color: #d7bdca;
-}
-
-.card__status {
-	font-size: 0.8em;
-	color: #d7bdca;
+.card__tagline,
+.card__status,
+.card__description,
+.card__price,
+.card__button {
+	/* color set via Tailwind classes */
 }
 
 .card__description {
 	padding: 0 2em 2em;
 	margin: 0;
-	color: #d7bdca;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
 	overflow: hidden;
 }
-
-.card__headerText {
-	display: flex;
-	flex-direction: column;
-}
-
-/* .card__price {
-	font-size: 1rem;
-	color: black;
-}
-
-.card__button {
-	background-color: #6a515e;
-	color: white;
-	padding: 0.5rem 1rem;
-	border: none;
-	border-radius: 20px;
-	cursor: pointer;
-	width: fit-content;
-	align-self: center;
-}
-
-.card__text {
-	font-size: 0.9rem;
-	color: #333;
-} */

@@ -25,14 +25,18 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/login" element={<LoginPage />} />
-				{/* <Route path="/dashboard" element={<DashboardPage />} /> */}
-				<Route path="/dashboard" element={<Layout />} />
-				<Route path="/your_bikes" element={<YourBikes />} />
-				<Route path="/settings" element={<Settings />} />
-				<Route path="/support" element={<Support />} />
-				<Route path="/about" element={<AboutPage />} />
-				<Route path="/orders" element={<Orders />} />
-				<Route path="/sales" element={<Sales />} />
+				<Route path="/user" element={<Layout />}>
+					<Route index element={<DashboardPage />} />
+					<Route path="dashboard" element={<DashboardPage />} />
+					{/* matches "/user/dashboard" */}
+					<Route path="your_bikes" element={<YourBikes />} />
+					<Route path="settings" element={<Settings />} />
+					<Route path="support" element={<Support />} />
+					<Route path="about" element={<AboutPage />} />
+					<Route path="orders" element={<Orders />} />
+					<Route path="sales" element={<Sales />} />
+				</Route>
+
 				<Route element={<AppLayout />}>
 					<Route path="/admin" element={<Home />} />
 					<Route path="/admin/bikes" element={<Bikes />} />
