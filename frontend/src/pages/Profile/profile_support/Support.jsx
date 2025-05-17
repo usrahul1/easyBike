@@ -60,9 +60,9 @@ const Support = () => {
 	];
 
 	return (
-		<div className="flex min-h-screen">
+		<div className="flex flex-col flex-grow">
 			<motion.div
-				className={`h-screen m-auto font-bold text-2xl flex-col flex-1`}
+				className={` h-screen m-auto font-bold text-2xl flex-col flex-1`}
 				ref={firstScreenRef}
 			>
 				<div className="h-screen m-auto font-bold text-2xl flex items-center justify-center">
@@ -104,7 +104,7 @@ const Support = () => {
 				</div>
 
 				{/* Contact Section */}
-				<section className="p-8 ">
+				<section className="p-8 flex flex-col flex-grow">
 					<center>
 						<h1
 							className={`section-header text-3xl font-semibold mb-8 select-none cursor-pointer ${style.underline}`}

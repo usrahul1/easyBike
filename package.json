@@ -1,0 +1,12 @@
+{
+	"name": "easybike",
+	"version": "1.0.0",
+	"description": "easyBike",
+	"main": "index.js",
+	"scripts": {
+		"start": "cd backend && npm start & cd frontend && npm run dev"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}

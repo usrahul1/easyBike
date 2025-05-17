@@ -20,7 +20,7 @@ const DashboardPage = () => {
 	}, [firebase, navigate]);
 
 	return (
-		<div className="flex min-h-screen">
+		<div className="flex min-h-screen flex-grow">
 			{/* <SidebarMain expand={expand} /> */}
 			{/* <Sidebar2 expand={expand} /> */}
 			<div

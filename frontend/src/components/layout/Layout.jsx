@@ -12,7 +12,7 @@ import Footer from "../Footer/Footer";
 const Layout = () => {
 	const { isSidebarOpen } = useContext(SidebarContext);
 	return (
-		<div className="flex">
+		<div className="flex min-h-screen">
 			<div className="fixed top-0 left-0 h-screen text-white">
 				<Sidebar2 />
 			</div>
@@ -27,8 +27,10 @@ const Layout = () => {
 				<div className="h-16 bg-white shadow flex-shrink-0">
 					<Header />
 				</div>
-				<div className="flex-1 overflow-y-auto">
-					<Outlet />
+				<div className="flex flex-col flex-grow overflow-y-auto">
+					<main className="flex-grow">
+						<Outlet />
+					</main>
 					<Footer />
 				</div>
 			</motion.div>
