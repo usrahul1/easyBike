@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 
 const bikeAddition = new mongoose.Schema({
 	ownerDetails: {
-		isOwner: {
-			type: Boolean,
-			default: true,
-		},
 		fullName: {
 			type: String,
 			required: true,
@@ -29,7 +25,7 @@ const bikeAddition = new mongoose.Schema({
 			match: [/.+\@.+\..+/, "Please enter a valid email"],
 		},
 		ownerPhoto: {
-			type: String, // store as file path or URL
+			type: String, // file path or URL
 		},
 	},
 
@@ -44,7 +40,7 @@ const bikeAddition = new mongoose.Schema({
 		},
 		fuelType: {
 			type: String,
-			enum: ["Petrol", "Diesel", "Electric", "Hybrid"], // modify as needed
+			enum: ["Petrol", "Electric"], // matched to your list
 			required: true,
 		},
 		color: {
@@ -52,11 +48,11 @@ const bikeAddition = new mongoose.Schema({
 			required: true,
 		},
 		mileage: {
-			type: String,
+			type: Number,
 			required: true,
 		},
 		rcCertificate: {
-			type: String, // file path or URL
+			type: String,
 		},
 		pollutionCertificate: {
 			type: String,

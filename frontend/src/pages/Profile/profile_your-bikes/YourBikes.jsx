@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
 import styles from "./YourBikes.module.css";
 import Card from "../../../components/Card_Bike/Card";
+import { useBikeStore } from "../../../store/requestSender";
+import toast from "react-hot-toast";
 
 const YourBikes = () => {
 	const firebase = useFirebase();
@@ -11,29 +13,13 @@ const YourBikes = () => {
 	const firstScreenRef = useRef(null);
 	const [profile, setProfile] = useState(null);
 	const [addingBikes, setAddingBikes] = useState(false);
-	const [ownerDetails, setOwnerDetails] = useState({
-		isOwner: true,
-		fullName: "",
-		dob: "",
-		address: "",
-		mobile: "",
-		email: "",
-		ownerPhoto: null,
-	});
-	const [bikeDetails, setBikeDetails] = useState({
-		brand: "",
-		model: "",
-		fuelType: "",
-		color: "",
-		mileage: "",
-		rcCertificate: null,
-		pollutionCertificate: null,
-		insuranceCertificate: null,
-		frontView: null,
-		backView: null,
-		rightView: null,
-		leftView: null,
-	});
+	const {
+		ownerDetails,
+		bikeDetails,
+		setOwnerDetails: setOwnerField,
+		setBikeDetails: setBikeField,
+		submitRegistration,
+	} = useBikeStore();
 
 	useEffect(() => {
 		if (!firebase.isLoggedIn) navigate("/login");
@@ -50,11 +36,11 @@ const YourBikes = () => {
 		const { name, value, type, checked, files } = e.target;
 
 		if (type === "checkbox") {
-			setOwnerDetails((prev) => ({ ...prev, isOwner: checked }));
+			setOwnerField((prev) => ({ ...prev, isOwner: checked }));
 		} else if (type === "file") {
-			setOwnerDetails((prev) => ({ ...prev, [name]: files[0] }));
+			setOwnerField((prev) => ({ ...prev, [name]: files[0] }));
 		} else {
-			setOwnerDetails((prev) => ({ ...prev, [name]: value }));
+			setOwnerField((prev) => ({ ...prev, [name]: value }));
 		}
 	};
 
@@ -62,20 +48,24 @@ const YourBikes = () => {
 		const { name, value, type, files } = e.target;
 
 		if (type === "file") {
-			setBikeDetails((prev) => ({ ...prev, [name]: files[0] }));
+			setBikeField((prev) => ({ ...prev, [name]: files[0] }));
 		} else {
-			setBikeDetails((prev) => ({ ...prev, [name]: value }));
+			setBikeField((prev) => ({ ...prev, [name]: value }));
 		}
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		console.log("Owner Details:", ownerDetails);
-		console.log("Bike Details:", bikeDetails);
-
-		alert("Bike registration submitted!");
-		setAddingBikes(false);
+		try {
+			setAddingBikes(true);
+			const result = await submitRegistration(profile);
+			console.log("Server Response:", result);
+			toast.success("Submitted successfully!");
+			setAddingBikes(false);
+		} catch (error) {
+			toast.error("Submission failed!");
+			console.error("Submission failed:", error);
+		}
 	};
 
 	return (
@@ -110,7 +100,11 @@ const YourBikes = () => {
 									<input
 										type="text"
 										name="fullName"
-										value={ownerDetails.isOwner ? profile.name : ""}
+										value={
+											ownerDetails.isOwner
+												? profile.name
+												: ownerDetails.fullName
+										}
 										onChange={handleOwnerChange}
 										className="w-full border border-black p-2 bg-white"
 										required
@@ -124,7 +118,9 @@ const YourBikes = () => {
 										type="date"
 										name="dob"
 										value={
-											ownerDetails.isOwner && profile?.dob ? profile.dob : ""
+											ownerDetails.isOwner && profile?.dob
+												? profile.dob
+												: ownerDetails.dob
 										}
 										onChange={handleOwnerChange}
 										className="w-full border border-black p-2 bg-white"
@@ -153,7 +149,11 @@ const YourBikes = () => {
 										type="tel"
 										name="mobile"
 										pattern="[0-9]{10}"
-										value={ownerDetails.isOwner ? profile.mobile : ""}
+										value={
+											ownerDetails.isOwner
+												? profile.mobile
+												: ownerDetails.mobile
+										}
 										onChange={handleOwnerChange}
 										className="w-full border border-black p-2 bg-white"
 										required
@@ -164,7 +164,9 @@ const YourBikes = () => {
 									<input
 										type="email"
 										name="email"
-										value={ownerDetails.isOwner ? profile.email : ""}
+										value={
+											ownerDetails.isOwner ? profile.email : ownerDetails.email
+										}
 										onChange={handleOwnerChange}
 										className="w-full border border-black p-2 bg-white"
 									/>

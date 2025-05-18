@@ -10,6 +10,7 @@ import {
 	signOut,
 	updateProfile,
 } from "firebase/auth";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import toast from "react-hot-toast";
 
 const FirebaseContext = createContext(null);
@@ -27,6 +28,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
+const storage = getStorage(firebaseApp);
 
 export const FirebaseProvider = (props) => {
 	const [user, setUser] = useState(null);
@@ -119,6 +121,23 @@ export const FirebaseProvider = (props) => {
 		}
 	};
 
+	const fileUpload = async (file, path) => {
+		try {
+			if (!file || !path) throw new Error("File or path missing");
+
+			const storageRef = ref(storage, `${path}/${Date.now()}_${file.name}`);
+			const snapshot = await uploadBytes(storageRef, file);
+			const downloadURL = await getDownloadURL(snapshot.ref);
+
+			toast.success("File uploaded successfully!");
+			return downloadURL;
+		} catch (error) {
+			console.error("Upload failed:", error);
+			toast.error(`Upload failed: ${error.message}`);
+			return null;
+		}
+	};
+
 	return (
 		<FirebaseContext.Provider
 			value={{
@@ -128,6 +147,7 @@ export const FirebaseProvider = (props) => {
 				googleSignIn,
 				logOut,
 				profDetails,
+				uploadImg,
 			}}
 		>
 			{props.children}
