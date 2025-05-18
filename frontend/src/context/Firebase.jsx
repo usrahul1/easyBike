@@ -147,7 +147,7 @@ export const FirebaseProvider = (props) => {
 				googleSignIn,
 				logOut,
 				profDetails,
-				uploadImg,
+				fileUpload,
 			}}
 		>
 			{props.children}

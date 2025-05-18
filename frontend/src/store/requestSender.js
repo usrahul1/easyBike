@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 
 export const useBikeStore = create((set) => ({
