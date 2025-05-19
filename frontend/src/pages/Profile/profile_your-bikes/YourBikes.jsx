@@ -1,7 +1,6 @@
-import { React, useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useFirebase } from "../../../context/Firebase";
 import { useNavigate } from "react-router-dom";
-import Footer from "../../../components/Footer/Footer";
 import styles from "./YourBikes.module.css";
 import Card from "../../../components/Card_Bike/Card";
 import { useBikeStore } from "../../../store/requestSender";
@@ -13,6 +12,7 @@ const YourBikes = () => {
 	const firstScreenRef = useRef(null);
 	const [profile, setProfile] = useState(null);
 	const [addingBikes, setAddingBikes] = useState(false);
+	const [isOwner, setIsOwner] = useState(false);
 	const {
 		ownerDetails,
 		bikeDetails,
@@ -32,15 +32,29 @@ const YourBikes = () => {
 		}
 	}, [firebase]);
 
-	const handleOwnerChange = (e) => {
-		const { name, value, type, checked, files } = e.target;
-
-		if (type === "checkbox") {
-			setOwnerField((prev) => ({ ...prev, isOwner: checked }));
-		} else if (type === "file") {
-			setOwnerField((prev) => ({ ...prev, [name]: files[0] }));
+	useEffect(() => {
+		if (isOwner && profile) {
+			setOwnerField("fullName", profile.name || "");
+			setOwnerField("dob", profile.dob || "");
+			setOwnerField("address", profile.address || "");
+			setOwnerField("mobile", profile.mobile || "");
+			setOwnerField("email", profile.email || "");
 		} else {
-			setOwnerField((prev) => ({ ...prev, [name]: value }));
+			setOwnerField("fullName", "");
+			setOwnerField("dob", "");
+			setOwnerField("address", "");
+			setOwnerField("mobile", "");
+			setOwnerField("email", "");
+		}
+	}, [isOwner, profile]);
+
+	const handleOwnerChange = (e) => {
+		const { name, value, type, files } = e.target;
+
+		if (type === "file") {
+			setOwnerField(name, files[0]);
+		} else {
+			setOwnerField(name, value);
 		}
 	};
 
@@ -48,23 +62,28 @@ const YourBikes = () => {
 		const { name, value, type, files } = e.target;
 
 		if (type === "file") {
-			setBikeField((prev) => ({ ...prev, [name]: files[0] }));
+			setBikeField(name, files[0]);
 		} else {
-			setBikeField((prev) => ({ ...prev, [name]: value }));
+			setBikeField(name, value);
 		}
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		let success;
 		try {
 			setAddingBikes(true);
-			const result = await submitRegistration(profile);
-			console.log("Server Response:", result);
+			await submitRegistration(firebase);
+			success = true;
+			console.log("done ig");
 			toast.success("Submitted successfully!");
-			setAddingBikes(false);
 		} catch (error) {
 			toast.error("Submission failed!");
-			console.error("Submission failed:", error);
+		} finally {
+			setAddingBikes(false);
+			console.log("🛑 Done with submission");
+			if (success) toast.success("Submitted successfully!");
+			else console.error("Submission failed:", error);
 		}
 	};
 
@@ -85,8 +104,8 @@ const YourBikes = () => {
 							<input
 								type="checkbox"
 								name="isOwner"
-								checked={ownerDetails.isOwner}
-								onChange={handleOwnerChange}
+								checked={isOwner}
+								onChange={() => setIsOwner((prev) => !prev)}
 							/>
 							<label>Is this your bike?</label>
 						</div>
@@ -101,9 +120,7 @@ const YourBikes = () => {
 										type="text"
 										name="fullName"
 										value={
-											ownerDetails.isOwner
-												? profile.name
-												: ownerDetails.fullName
+											isOwner ? profile?.name || "" : ownerDetails.fullName
 										}
 										onChange={handleOwnerChange}
 										className="w-full border border-black p-2 bg-white"
@@ -118,9 +135,7 @@ const YourBikes = () => {
 										type="date"
 										name="dob"
 										value={
-											ownerDetails.isOwner && profile?.dob
-												? profile.dob
-												: ownerDetails.dob
+											isOwner && profile?.dob ? profile.dob : ownerDetails.dob
 										}
 										onChange={handleOwnerChange}
 										className="w-full border border-black p-2 bg-white"
@@ -150,7 +165,7 @@ const YourBikes = () => {
 										name="mobile"
 										pattern="[0-9]{10}"
 										value={
-											ownerDetails.isOwner
+											isOwner && profile?.mobile
 												? profile.mobile
 												: ownerDetails.mobile
 										}
@@ -164,11 +179,10 @@ const YourBikes = () => {
 									<input
 										type="email"
 										name="email"
-										value={
-											ownerDetails.isOwner ? profile.email : ownerDetails.email
-										}
+										value={isOwner ? profile.email : ownerDetails.email}
 										onChange={handleOwnerChange}
 										className="w-full border border-black p-2 bg-white"
+										required
 									/>
 								</div>
 								<div className="mb-4">
@@ -355,7 +369,8 @@ const YourBikes = () => {
 						{/* Submit */}
 						<button
 							type="submit"
-							className="w-fit cursor-pointer bg-black text-white font-semibold py-2 px-4 hover:bg-gray-800 transition"
+							className="w-fit cursor-pointer bg-black text-white font-semibold
+							py-2 px-4 hover:bg-gray-800 transition"
 						>
 							Submit Registration
 						</button>

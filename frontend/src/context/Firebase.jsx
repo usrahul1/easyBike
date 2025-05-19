@@ -121,15 +121,20 @@ export const FirebaseProvider = (props) => {
 		}
 	};
 
-	const fileUpload = async (file, path) => {
+	const fileUpload = async (file, path, bike) => {
 		try {
 			if (!file || !path) throw new Error("File or path missing");
 
-			const storageRef = ref(storage, `${path}/${Date.now()}_${file.name}`);
+			const storageRef = ref(
+				storage,
+				`${bike ? "bike" : "profile"}_requests/${path}/${Date.now()}_${
+					file.name
+				}`
+			);
+
 			const snapshot = await uploadBytes(storageRef, file);
 			const downloadURL = await getDownloadURL(snapshot.ref);
-
-			toast.success("File uploaded successfully!");
+			console.log(downloadURL);
 			return downloadURL;
 		} catch (error) {
 			console.error("Upload failed:", error);

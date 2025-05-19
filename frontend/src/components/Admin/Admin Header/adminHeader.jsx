@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 // import { useSidebar } from "../../../context/Admin Context/sidebarContext";
 import { ThemeToggleButton } from "../components/common/ThemeToggleButton";
 import UserDropdown from "../components/header/UserDropdown";
-import { SidebarContext } from "../../../context/SidebarContext";
+// import { SidebarContext } from "../../../context/Admin Context/sidebarContext";
 
 const AppHeader = () => {
 	const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 	// const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
-	const { isSidebarOpen } = useContext(SidebarContext);
+	// const { isSidebarOpen } = useContext(SidebarContext);
 
-	useEffect(() => {}, [isSidebarOpen]);
+	// useEffect(() => {}, [isSidebarOpen]);
 
 	// const handleToggle = () => {
 	// 	if (window.innerWidth >= 1024) toggleSidebar();

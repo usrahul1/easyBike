@@ -35,66 +35,100 @@ export const useBikeStore = create((set) => ({
 			bikeDetails: { ...state.bikeDetails, [field]: value },
 		})),
 
-	submitRegistration: async (profile) => {
+	submitRegistration: async (firebase) => {
 		try {
 			const { ownerDetails, bikeDetails } = useBikeStore.getState();
 
 			const formData = new FormData();
-			formData.append(
-				"fullName",
-				ownerDetails.isOwner ? profile.name : ownerDetails.fullName
-			);
-			formData.append(
-				"dob",
-				ownerDetails.isOwner && profile?.dob ? profile.dob : ownerDetails.dob
-			);
+			formData.append("fullName", ownerDetails.fullName);
+			formData.append("dob", ownerDetails.dob);
 			formData.append("address", ownerDetails.address);
-			formData.append(
-				"mobile",
-				ownerDetails.isOwner ? profile.mobile : ownerDetails.mobile
-			);
-			formData.append(
-				"email",
-				ownerDetails.isOwner ? profile.email : ownerDetails.email
-			);
-			if (ownerDetails.ownerPhoto)
-				formData.append("ownerPhoto", ownerDetails.ownerPhoto);
-
+			formData.append("mobile", ownerDetails.mobile);
+			formData.append("email", ownerDetails.email);
+			if (ownerDetails.ownerPhoto) {
+				const url = await firebase.fileUpload(
+					ownerDetails.ownerPhoto,
+					ownerDetails.email,
+					true
+				);
+				formData.append("ownerPhoto", url);
+			}
 			formData.append("brand", bikeDetails.brand);
 			formData.append("model", bikeDetails.model);
 			formData.append("fuelType", bikeDetails.fuelType);
 			formData.append("color", bikeDetails.color);
 			formData.append("mileage", bikeDetails.mileage);
-			if (bikeDetails.rcCertificate)
-				formData.append("rcCertificate", bikeDetails.rcCertificate);
-			if (bikeDetails.pollutionCertificate)
-				formData.append(
-					"pollutionCertificate",
-					bikeDetails.pollutionCertificate
+			if (bikeDetails.rcCertificate) {
+				const url = await firebase.fileUpload(
+					bikeDetails.rcCertificate,
+					ownerDetails.email,
+					true
 				);
-			if (bikeDetails.insuranceCertificate)
-				formData.append(
-					"insuranceCertificate",
-					bikeDetails.insuranceCertificate
-				);
-			if (bikeDetails.frontView)
-				formData.append("frontView", bikeDetails.frontView);
-			if (bikeDetails.backView)
-				formData.append("backView", bikeDetails.backView);
-			if (bikeDetails.rightView)
-				formData.append("rightView", bikeDetails.rightView);
-			if (bikeDetails.leftView)
-				formData.append("leftView", bikeDetails.leftView);
+				formData.append("rcCertificate", url);
+			}
 
-			// Axios POST request with form data
-			const response = await axiosInstance.post("/api/bikes", formData, {
+			if (bikeDetails.pollutionCertificate) {
+				const url = await firebase.fileUpload(
+					bikeDetails.pollutionCertificate,
+					ownerDetails.email,
+					true
+				);
+				formData.append("pollutionCertificate", url);
+			}
+
+			if (bikeDetails.insuranceCertificate) {
+				const url = await firebase.fileUpload(
+					bikeDetails.insuranceCertificate,
+					ownerDetails.email,
+					true
+				);
+				formData.append("insuranceCertificate", url);
+			}
+
+			if (bikeDetails.frontView) {
+				const url = await firebase.fileUpload(
+					bikeDetails.frontView,
+					ownerDetails.email,
+					true
+				);
+				formData.append("frontView", url);
+			}
+
+			if (bikeDetails.backView) {
+				const url = await firebase.fileUpload(
+					bikeDetails.backView,
+					ownerDetails.email,
+					true
+				);
+				formData.append("backView", url);
+			}
+
+			if (bikeDetails.rightView) {
+				const url = await firebase.fileUpload(
+					bikeDetails.rightView,
+					ownerDetails.email,
+					true
+				);
+				formData.append("rightView", url);
+			}
+
+			if (bikeDetails.leftView) {
+				const url = await firebase.fileUpload(
+					bikeDetails.leftView,
+					ownerDetails.email,
+					true
+				);
+				formData.append("leftView", url);
+			}
+
+			const response = await axiosInstance.post("/req/bike_req", formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 				},
 			});
 
-			alert("Bike registration submitted!");
-			return response.data;
+			console.log(response.data);
+			// toast.success("Done! Submitted Request!");
 		} catch (error) {
 			console.error("Failed to submit bike registration:", error);
 			alert("Failed to submit bike registration.");
