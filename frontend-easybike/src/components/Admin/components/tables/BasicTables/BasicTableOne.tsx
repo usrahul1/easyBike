@@ -6,11 +6,29 @@ import {
 	TableRow,
 } from "../../ui/table";
 import Button from "../../ui/button/Button";
-// import { BoxIcon } from "../../../icons";
-// import Badge from "../../ui/badge/Badge";
 import { Check, X } from "lucide-react";
 
-const tableData = [
+// Type definitions
+type User = {
+	image: string;
+	name: string;
+	email: string;
+};
+
+type Team = {
+	images: string[];
+};
+
+type TableItem = {
+	id: number;
+	user: User;
+	projectName: string;
+	team: Team;
+	budget: string;
+	status: "Active" | "Pending" | "Cancel";
+};
+
+const tableData: TableItem[] = [
 	{
 		id: 1,
 		user: {
@@ -95,50 +113,34 @@ const tableData = [
 	},
 ];
 
-export default function BasicTableOne() {
+export default function BasicTableOne(): JSX.Element {
 	return (
-		<div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+		<div className="overflow-hidden rounded-xl border ">
 			<div className="max-w-full overflow-x-auto">
 				<Table>
 					{/* Table Header */}
-					<TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+					<TableHeader className="border-b ">
 						<TableRow>
-							<TableCell
-								isHeader
-								className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-							>
+							<TableCell isHeader className="px-5 py-3 font-medium text-start">
 								User
 							</TableCell>
-							<TableCell
-								isHeader
-								className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-							>
+							<TableCell isHeader className="px-5 py-3 font-medium text-start">
 								Applied Date
 							</TableCell>
-
-							<TableCell
-								isHeader
-								className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-							>
+							<TableCell isHeader className="px-5 py-3 font-medium text-start">
 								Show Document
 							</TableCell>
-							<TableCell
-								isHeader
-								className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-							>
+							<TableCell isHeader className="px-5 py-3 font-medium text-start">
 								Show Profile
 							</TableCell>
-							<TableCell
-								isHeader
-								className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-							>
+							<TableCell isHeader className="px-5 py-3 font-medium text-start">
 								Action
 							</TableCell>
 						</TableRow>
 					</TableHeader>
 
 					{/* Table Body */}
-					<TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
+					<TableBody className="divide-y">
 						{tableData.map((order) => (
 							<TableRow key={order.id}>
 								<TableCell className="px-5 py-4 sm:px-6 text-start">
@@ -152,54 +154,27 @@ export default function BasicTableOne() {
 											/>
 										</div>
 										<div>
-											<span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+											<span className="block font-medium">
 												{order.user.name}
 											</span>
-											<span className="block text-gray-500 text-theme-xs dark:text-gray-400">
-												{order.user.email}
-											</span>
+											<span className="block">{order.user.email}</span>
 										</div>
 									</div>
 								</TableCell>
-								<TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+								<TableCell className="px-4 py-3 text-start text-theme-sm">
 									{order.projectName}
 								</TableCell>
-								<TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-									{/* <Badge
-                    size="sm"
-                    color={
-                      order.status === "Active"
-                        ? "success"
-                        : order.status === "Pending"
-                        ? "warning"
-                        : "error"
-                    }
-                  >
-                    {order.status}
-                  </Badge> */}
+								<TableCell className="px-4 py-3 text-start text-theme-sm">
 									<Button size="sm" variant="outline">
 										Show Document
 									</Button>
 								</TableCell>
-
-								<TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-									{/* <Badge
-                    size="sm"
-                    color={
-                      order.status === "Active"
-                        ? "success"
-                        : order.status === "Pending"
-                        ? "warning"
-                        : "error"
-                    }
-                  >
-                    {order.status}
-                  </Badge> */}
+								<TableCell className="px-4 py-3 text-start text-theme-sm">
 									<Button size="sm" variant="outline">
 										Show Profile
 									</Button>
 								</TableCell>
-								<TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400 flex gap-2">
+								<TableCell className="px-4 py-3 text-theme-sm flex gap-2">
 									<Button
 										size="sm"
 										variant="outline"

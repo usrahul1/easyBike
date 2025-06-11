@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Outlet } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { useThemeStore } from "../../store/useThemeStore";
+// import MobileNav from "../MobileNav/MobileNav";
 
 const Layout: React.FC = () => {
 	const { isSidebarOpen } = useSidebar();
@@ -25,6 +26,7 @@ const Layout: React.FC = () => {
 				transition={{ duration: 0.3, ease: "easeInOut" }}
 			>
 				<div className="h-16 shadow flex-shrink-0">
+					{/* <MobileNav className="md:hidden" /> */}
 					<Header />
 				</div>
 				<div className="flex flex-col flex-grow overflow-y-auto">
