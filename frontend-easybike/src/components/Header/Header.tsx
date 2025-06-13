@@ -7,7 +7,7 @@ const Header: React.FC = () => {
 	// const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
 	return (
-		<div className="sticky top-0 flex w-full lg:border-b">
+		<div className="sticky top-0 flex w-full border-y brightness-125 border-base-300 bg-base-100">
 			<div className="flex flex-col items-center justify-between grow lg:flex-row lg:px-6">
 				<div
 					className={`

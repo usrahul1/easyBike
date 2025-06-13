@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import PageBreadcrumb from "../../../components/Admin/components/common/PageBreadCrumb";
 import ComponentCard from "../../../components/Admin/components/common/ComponentCard";

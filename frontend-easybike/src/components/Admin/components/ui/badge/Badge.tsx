@@ -1,4 +1,27 @@
-const Badge = ({
+import React from "react";
+import type { ReactNode } from "react";
+
+type Variant = "light" | "solid";
+type Color =
+	| "primary"
+	| "success"
+	| "error"
+	| "warning"
+	| "info"
+	| "light"
+	| "dark";
+type Size = "sm" | "md";
+
+interface BadgeProps {
+	variant?: Variant;
+	color?: Color;
+	size?: Size;
+	startIcon?: ReactNode;
+	endIcon?: ReactNode;
+	children: ReactNode;
+}
+
+const Badge: React.FC<BadgeProps> = ({
 	variant = "light",
 	color = "primary",
 	size = "md",
@@ -9,14 +32,12 @@ const Badge = ({
 	const baseStyles =
 		"inline-flex items-center px-2.5 py-0.5 justify-center gap-1 rounded-full font-medium";
 
-	// Define size styles
-	const sizeStyles = {
-		sm: "text-theme-xs", // Smaller padding and font size
-		md: "text-sm", // Default padding and font size
+	const sizeStyles: Record<Size, string> = {
+		sm: "text-theme-xs",
+		md: "text-sm",
 	};
 
-	// Define color styles for variants
-	const variants = {
+	const variants: Record<Variant, Record<Color, string>> = {
 		light: {
 			primary:
 				"bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400",
@@ -41,7 +62,6 @@ const Badge = ({
 		},
 	};
 
-	// Get styles based on size and color variant
 	const sizeClass = sizeStyles[size];
 	const colorStyles = variants[variant][color];
 

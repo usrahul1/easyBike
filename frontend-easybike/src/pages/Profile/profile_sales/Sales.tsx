@@ -115,7 +115,7 @@ const tableData: TableItem[] = [
 
 const Sales: FC = () => {
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-base-100">
+		<div className="flex items-center justify-center flex-grow min-h-screen bg-base-100 border-2 border-white">
 			<div className="overflow-hidden rounded-xl shadow-lg border border-base-300 w-full max-w-6xl">
 				<div className="overflow-x-auto">
 					<Table className="table w-full text-base-content">

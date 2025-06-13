@@ -93,7 +93,7 @@ const Sidebar2: React.FC = () => {
 
 	return (
 		<motion.div
-			className={`h-screen transition-all duration-300 ease-in-out flex-shrink-0 border-r border-base-300 bg-base-100`}
+			className={`h-screen transition-all duration-300 ease-in-out flex-shrink-0 border-r border-base-300 bg-base-100 brightness-125`}
 			animate={{ width: isSidebarOpen ? 250 : 80 }}
 			transition={{ duration: 0.3, ease: "easeInOut" }}
 		>

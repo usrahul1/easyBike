@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import EcommerceMetrics from "../../../components/Admin/components/ecommerce/EcommerceMetrics";
 import MonthlySalesChart from "../../../components/Admin/components/ecommerce/MonthlySalesChart";
@@ -11,7 +11,10 @@ import PageMeta from "../../../components/Admin/components/common/PageMeta";
 const Home: FC = () => {
 	return (
 		<>
-			<PageMeta title="Dashboard Home" />
+			<PageMeta
+				title="Dashboard Home"
+				description="Overview of metrics, sales, targets, and recent activity on your dashboard."
+			/>
 			<div className="grid grid-cols-12 gap-4 md:gap-6">
 				<div className="col-span-12 space-y-6 xl:col-span-7">
 					<EcommerceMetrics />

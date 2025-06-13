@@ -19,13 +19,13 @@ const Layout: React.FC = () => {
 			</div>
 
 			<motion.div
-				className={`flex flex-col w-full h-screen overflow-hidden transition-[margin] duration-300 ease-in-out ${
+				className={`flex flex-col w-full min-h-screen overflow-hidden transition-[margin] duration-300 ease-in-out ${
 					isSidebarOpen ? "ml-[250px]" : "ml-[80px]"
 				}`}
 				animate={{ marginLeft: isSidebarOpen ? 250 : 80 }}
 				transition={{ duration: 0.3, ease: "easeInOut" }}
 			>
-				<div className="h-16 shadow flex-shrink-0">
+				<div className="shadow flex-shrink-0">
 					{/* <MobileNav className="md:hidden" /> */}
 					<Header />
 				</div>

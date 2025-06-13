@@ -3,7 +3,7 @@ import {
 	SidebarProvider,
 	useSidebar,
 } from "../../../context/Admin Context/sidebarContext";
-import { Outlet } from "react-router-dom"; // Use react-router-dom instead of react-router for web apps
+import { Outlet } from "react-router-dom";
 import AppHeader from "../Admin Header/adminHeader";
 import Backdrop from "../Backdrop/Backdrop";
 import AppSidebar from "../Admin Sidebar/adminSidebar";
