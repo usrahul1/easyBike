@@ -1,8 +1,8 @@
-import { useState, FC } from "react";
+import { useState } from "react";
+import type { FC } from "react";
 
 const ChartTab: FC = () => {
-	const [selected, setSelected] =
-		(useState < "optionOne") | "optionTwo" | ("optionThree" > "optionOne");
+	const [selected, setSelected] = useState<string>("optionOne");
 
 	const getButtonClass = (option: string): string =>
 		selected === option
