@@ -68,7 +68,7 @@ const AppLayout: React.FC = () => {
 		return () => clearInterval(interval);
 	}, [firebase, navigate]);
 
-	if (!profileReady) return null; // Or a loader/spinner
+	if (!profileReady) return null;
 
 	return (
 		<SidebarProvider>

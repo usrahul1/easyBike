@@ -1,9 +1,11 @@
-import React, { useEffect, useState, FormEvent } from "react";
+import React, { useEffect, useState } from "react";
+import type { FormEvent } from "react";
 import styles from "./LoginPage.module.css";
 // import Navbar from "../../components/Navbar/Navbar";
 import { useFirebase } from "../../context/Firebase";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 
 const LoginPage: React.FC = () => {
 	const [isActive, setIsActive] = useState<boolean>(false);
@@ -111,7 +113,7 @@ const LoginPage: React.FC = () => {
 				<div className={`${styles.formContainer} ${styles.signIn}`}>
 					<form className={styles.form}>
 						<h1
-							className={`text-xl font-bold cursor-pointer select-none ${styles.underline}`}
+							className={`text-primary cursor-pointer select-none ${styles.underline}`}
 						>
 							Welcome Back!
 						</h1>
@@ -121,7 +123,8 @@ const LoginPage: React.FC = () => {
 								onClick={handleGoogleSignIn}
 								className={`${styles.icon} cursor-pointer`}
 							>
-								<i className="fa-brands fa-google"></i>
+								{/* <i className="fa-brands fa-google"></i> */}
+								<FaGoogle />
 							</button>
 						</div>
 						<span className={styles.subText}>or use your email password</span>
@@ -169,7 +172,7 @@ const LoginPage: React.FC = () => {
 							<h1>Hola, Rider!</h1>
 							<p className={styles.text}>Welcome back, sign in and enjoy!</p>
 							<button
-								className={`${styles.button} ${styles.hidden} text-black`}
+								className={`${styles.button} ${styles.hidden}`}
 								onClick={() => setIsActive(true)}
 							>
 								Sign Up

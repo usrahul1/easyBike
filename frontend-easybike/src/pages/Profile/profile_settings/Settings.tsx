@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useFirebase } from "../../../context/Firebase";
 import { useNavigate } from "react-router-dom";
-import { User, Camera, Mail } from "lucide-react";
+import { User, Camera, Mail, Phone } from "lucide-react";
 import avatar from "../../../assets/avatar.png";
 import { useThemeStore } from "../../../store/useThemeStore";
 import { THEMES } from "../../../themes";
@@ -108,6 +108,16 @@ const Settings: React.FC = () => {
 										{profile?.email || "Loading..."}
 									</p>
 								</div>
+
+								<div className="space-y-1.5">
+									<div className="text-sm text-zinc-400 flex items-center gap-2">
+										<Phone className="w-4 h-4" />
+										Phone Number
+									</div>
+									<p className="px-4 py-2.5 bg-base-200 rounded-lg border border-base-100 text-base-content break-all">
+										{"Not Provided"}
+									</p>
+								</div>
 							</div>
 
 							{/* Account Info */}
@@ -122,7 +132,7 @@ const Settings: React.FC = () => {
 											{profile?.createdAt || "Loading..."}
 										</span>
 									</div>
-									<div className="flex flex-col sm:flex-row sm:justify-between py-2">
+									<div className="flex flex-col sm:flex-row sm:justify-between py-2 ">
 										<span className="text-base-content/70">Account Status</span>
 										<span className="text-green-500">Active</span>
 									</div>

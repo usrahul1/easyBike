@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const bikeAddition = new mongoose.Schema({
-	// Owner details (flattened)
+	ownerId: {
+		type: String, // Firebase UID
+		required: true,
+	},
+
 	fullName: {
 		type: String,
 		required: true,
@@ -25,10 +29,9 @@ const bikeAddition = new mongoose.Schema({
 		match: [/.+\@.+\..+/, "Please enter a valid email"],
 	},
 	ownerPhoto: {
-		type: String, // file path or URL
+		type: String,
 	},
 
-	// Bike details (flattened)
 	brand: {
 		type: String,
 		required: true,

@@ -1,6 +1,7 @@
 const express = require("express");
 
 const BikeRegistration = require("../models/bikeReqModel");
+const Bike = require("../models/bikeModel");
 
 const bikeReq = async (req, res) => {
 	try {
@@ -38,4 +39,44 @@ const bikeReq = async (req, res) => {
 	}
 };
 
-module.exports = bikeReq;
+const acceptBike = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		// Fetch the pending bike registration
+		const request = await BikeRegistration.findById(id);
+		if (!request) {
+			return res.status(404).json({ error: "Bike request not found" });
+		}
+
+		// Create a new bike in the main Bike collection with ownerId
+		const acceptedBike = await Bike.create({
+			brand: request.brand,
+			model: request.model,
+			fuelType: request.fuelType,
+			color: request.color,
+			mileage: request.mileage,
+			rcCertificate: request.rcCertificate,
+			pollutionCertificate: request.pollutionCertificate,
+			insuranceCertificate: request.insuranceCertificate,
+			frontView: request.frontView,
+			backView: request.backView,
+			rightView: request.rightView,
+			leftView: request.leftView,
+			ownerId: request.ownerId, // ✅ include ownerId from Firebase
+		});
+
+		// Delete the pending request after accepting
+		await BikeRegistration.findByIdAndDelete(id);
+
+		res.status(200).json({
+			message: "Bike request accepted and added to main listing",
+			bike: acceptedBike,
+		});
+	} catch (error) {
+		console.error("Error accepting bike request:", error);
+		res.status(500).json({ error: "Failed to accept bike request" });
+	}
+};
+
+module.exports = { bikeReq, acceptBike };
