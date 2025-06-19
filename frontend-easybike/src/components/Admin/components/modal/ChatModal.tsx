@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import { X, Phone, PhoneOff, Mic, MicOff } from "lucide-react";
 import { axiosInstance } from "../../../../lib/axios";
 
-const socket = io("http://localhost:3000", {
+const socket = io("https://easybike.onrender.com", {
 	withCredentials: true,
 });
 
