@@ -1,0 +1,215 @@
+.cardContainer {
+	margin: 4rem 5vw;
+	display: flex;
+	gap: 2rem;
+	justify-content: flex-start; /* Optional: center-align rows */
+	flex-wrap: wrap;
+}
+
+/* <!-- HTML !-->
+<button class="button-17" role="button">Button 17</button> */
+
+/* CSS */
+.button1 {
+	align-items: center;
+	appearance: none;
+	background-color: #fff;
+	border-radius: 24px;
+	border-style: none;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+		rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+	box-sizing: border-box;
+	color: #3c4043;
+	cursor: pointer;
+	display: inline-flex;
+	fill: currentcolor;
+	font-family: "Google Sans", Roboto, Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	height: 48px;
+	justify-content: center;
+	letter-spacing: 0.25px;
+	line-height: normal;
+	max-width: 100%;
+	overflow: visible;
+	padding: 2px 24px;
+	position: relative;
+	text-align: center;
+	text-transform: none;
+	transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	width: auto;
+	will-change: transform, opacity;
+	z-index: 0;
+}
+
+.button1:hover {
+	background: #f6f9fe;
+	color: #174ea6;
+}
+
+.button1:active {
+	box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+		0 8px 12px 6px rgb(60 64 67 / 15%);
+	outline: none;
+}
+
+.button1:focus {
+	outline: none;
+	border: 2px solid #4285f4;
+}
+
+.button1:not(:disabled) {
+	box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+		rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.button1:not(:disabled):hover {
+	box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+		rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+}
+
+.button1:not(:disabled):focus {
+	box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+		rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.button1:not(:disabled):active {
+	box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+		rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
+}
+
+.button1:disabled {
+	box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+		rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.underline {
+	display: inline-block;
+	position: relative;
+}
+
+.underline::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 4px;
+	bottom: -2px;
+	left: 0;
+	background-color: #0087ca;
+	transform: scaleX(0);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+
+.underline:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.underline {
+	display: inline-block;
+	position: relative;
+}
+
+.underline::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 4px;
+	bottom: -2px;
+	left: 0;
+	background-color: #0087ca;
+	transform: scaleX(0);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+
+.underline:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.icon-btn {
+	width: 50px;
+	height: 50px;
+	border: 1px solid #cdcdcd;
+	background: white;
+	border-radius: 25px;
+	overflow: hidden;
+	position: relative;
+	transition: width 0.2s ease-in-out;
+}
+.add-btn:hover {
+	width: 120px;
+}
+.add-btn::before,
+.add-btn::after {
+	transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+	content: "";
+	position: absolute;
+	height: 4px;
+	width: 10px;
+	top: calc(50% - 2px);
+	background: red;
+}
+.add-btn::after {
+	right: 14px;
+	overflow: hidden;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+.add-btn::before {
+	left: 14px;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+	outline: none;
+}
+.btn-txt {
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+.add-btn:hover::before,
+.add-btn:hover::after {
+	width: 4px;
+	border-radius: 2px;
+}
+.add-btn:hover .btn-txt {
+	opacity: 1;
+}
+.add-icon::after,
+.add-icon::before {
+	transition: all 0.2s ease-in-out;
+	content: "";
+	position: absolute;
+	height: 20px;
+	width: 2px;
+	top: calc(50% - 10px);
+	background: red;
+	overflow: hidden;
+}
+.add-icon::before {
+	left: 22px;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+.add-icon::after {
+	right: 22px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+.add-btn:hover .add-icon::before {
+	left: 15px;
+	height: 4px;
+	top: calc(50% - 2px);
+}
+.add-btn:hover .add-icon::after {
+	right: 15px;
+	height: 4px;
+	top: calc(50% - 2px);
+}

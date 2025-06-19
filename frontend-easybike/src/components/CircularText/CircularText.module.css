@@ -1,0 +1,86 @@
+.circularTextContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.circularTextSvg {
+	width: 30rem;
+	transform-origin: center;
+	animation: rotateText 10s linear infinite;
+}
+
+.circularText {
+	font-size: 16px; /* Increase size */
+	letter-spacing: 0.1em;
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	fill: #fc3153; /* Change text color */
+	font-family: "Luckiest Guy";
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-shadow: 0px -6px 0 #212121, 0px -6px 0 #212121, 0px 6px 0 #212121,
+		0px 6px 0 #212121, -6px 0px 0 #212121, 6px 0px 0 #212121, -6px 0px 0 #212121,
+		6px 0px 0 #212121, -6px -6px 0 #212121, 6px -6px 0 #212121,
+		-6px 6px 0 #212121, 6px 6px 0 #212121, -6px 18px 0 #212121,
+		0px 18px 0 #212121, 6px 18px 0 #212121, 0 19px 1px rgba(0, 0, 0, 0.1),
+		0 0 6px rgba(0, 0, 0, 0.1), 0 6px 3px rgba(0, 0, 0, 0.3),
+		0 12px 6px rgba(0, 0, 0, 0.2), 0 18px 18px rgba(0, 0, 0, 0.25),
+		0 24px 24px rgba(0, 0, 0, 0.2), 0 36px 36px rgba(0, 0, 0, 0.15);
+}
+
+/* Button inside SVG */
+
+.cBCont {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* position: relative; */
+	height: 100vh; /* Full viewport height */
+}
+
+.circularButton {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 20em;
+	border-radius: 50%;
+	border: 2px solid white;
+	background: transparent;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.circularButton:hover {
+	background: white;
+}
+
+.circularImage {
+	border-radius: 50%;
+}
+
+@keyframes rotateText {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (max-width: 768px) {
+	.circularTextSvg {
+		width: 16rem; /* Reduce size on mobile */
+	}
+
+	.circularButton {
+		width: 10em; /* Shrink button on mobile */
+	}
+
+	.cBCont {
+		height: auto; /* Prevent unnecessary vertical overflow */
+	}
+}

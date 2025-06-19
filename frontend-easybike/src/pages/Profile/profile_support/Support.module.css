@@ -1,0 +1,107 @@
+/* Underline effect */
+.underline {
+	display: inline-block;
+	position: relative;
+}
+.underline::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 4px;
+	bottom: -2px;
+	left: 0;
+	background-color: currentColor; /* Uses current text color */
+	transform: scaleX(0);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+.underline:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+/* Accordion open/closed state */
+.accordion.open {
+	grid-template-rows: 0fr 1fr;
+}
+.accordion {
+	margin-bottom: 1rem;
+	border-radius: 0.5rem;
+	display: grid;
+	grid-template-rows: 0fr 0fr;
+	transition: grid-template-rows var(--slide-ease) var(--slide-duration)
+			var(--slide-delay),
+		box-shadow 200ms, opacity 200ms;
+
+	/* Remove hardcoded color, let DaisyUI theme handle it */
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+		var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); /* Uses Tailwind/Daisy shadow */
+	opacity: 0.9;
+	overflow: hidden;
+	position: relative;
+}
+
+/* Accordion title */
+.title a {
+	padding: 1rem 1.25rem;
+	font-size: var(--size-accordion-title);
+	font-weight: 800;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+/* Accordion content wrapper */
+.content {
+	font-size: var(--size-accordion-content);
+	line-height: 1.4;
+	overflow: hidden;
+}
+.wrapper {
+	padding: 0 1.25rem 1.05rem 1.25rem;
+}
+.content p {
+	margin-bottom: 1rem;
+}
+.content a {
+	font-weight: 800;
+	text-decoration: underline;
+	color: inherit; /* Inherit link color from theme */
+}
+
+/* Accordion container: responsive setup */
+.accordionContainer {
+	--size-header: 2.25rem;
+	--size-accordion-title: 1.25rem;
+	--size-accordion-content: 1rem;
+	--animation-speed: 100;
+	--slide-ease: cubic-bezier(0.86, 0, 0.07, 1);
+	--slide-duration: calc(400ms * 100 / var(--animation-speed));
+	--slide-delay: calc(450ms * 100 / var(--animation-speed));
+	--circle-duration: calc(900ms * 100 / var(--animation-speed));
+
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 0 1rem;
+	box-sizing: border-box;
+}
+
+/* Responsive font sizing using clamp */
+.title a {
+	font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
+}
+.content {
+	font-size: clamp(0.9rem, 1vw + 0.2rem, 1.125rem);
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 640px) {
+	.wrapper {
+		padding: 0 1rem 1rem 1rem;
+	}
+	.title a {
+		padding: 0.75rem 1rem;
+	}
+}

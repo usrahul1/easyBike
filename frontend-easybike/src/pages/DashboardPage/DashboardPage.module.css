@@ -1,0 +1,35 @@
+:root {
+	--surface-color: #fff;
+	--curve: 40;
+}
+
+.dashcenter {
+	display: inline-block;
+	position: relative;
+}
+
+.dashcenter::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 4px;
+	bottom: -2px;
+	left: 0;
+	background-color: #0087ca;
+	transform: scaleX(0);
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+
+.dashcenter:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.cardContainer {
+	margin: 4rem 5vw;
+	display: flex;
+	gap: 2rem;
+	justify-content: flex-start; /* Optional: center-align rows */
+	flex-wrap: wrap;
+}
