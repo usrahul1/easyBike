@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: "https://easy-bike.vercel.app/user/your_bikes", // Your frontend
+		origin: ["http://localhost:5173", "https://easy-bike.vercel.app"],
 		credentials: true,
 	})
 );
@@ -28,10 +28,7 @@ const server = http.createServer(app);
 // Set up Socket.IO
 const io = new Server(server, {
 	cors: {
-		origin: [
-			"http://localhost:5173",
-			"https://easy-bike.vercel.app/user/your_bikes",
-		],
+		origin: ["http://localhost:5173", "https://easy-bike.vercel.app"],
 		methods: ["GET", "POST"],
 		credentials: true,
 	},
