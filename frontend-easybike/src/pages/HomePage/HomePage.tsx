@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import logo from "../../assets/easyBike.png";
 import InstagramIcon from "../../icons/Insta";
 import Fb from "../../icons/Fb";
-import { House, Bike, ArrowUp, UsersRound } from "lucide-react";
+import { House, Bike, ArrowDown, UsersRound } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import styles from "./HomePage.module.css";
@@ -119,7 +119,7 @@ const HomePage: React.FC = () => {
 							<div className="scroll px-4 pb-4 hidden md:block">
 								<button onClick={handleScroll}>
 									<h3 className="flex gap-2 cursor-pointer text-black border-2 w-fit px-2 py-1 rounded-md font-medium select-none">
-										<ArrowUp />
+										<ArrowDown />
 										Scroll Down
 									</h3>
 								</button>
@@ -137,7 +137,10 @@ const HomePage: React.FC = () => {
 			</div>
 
 			{/* Second screen */}
-			<div className="secondScreen bg-[#2F2F2F] max-w-screen min-h-screeb">
+			<div
+				id="secondScreen"
+				className="secondScreen bg-[#2F2F2F] max-w-screen min-h-screeb"
+			>
 				<CarouselCard />
 			</div>
 

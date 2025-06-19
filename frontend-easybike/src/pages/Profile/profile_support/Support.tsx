@@ -117,46 +117,8 @@ const Support: React.FC = () => {
 						</h1>
 					</div>
 
-					<div className="flex flex-col lg:flex-row items-center justify-center gap-8">
-						{/* Contact Form */}
-						<form
-							className="w-full max-w-md p-6 bg-base-200 rounded-lg shadow flex flex-col gap-4"
-							onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-								e.preventDefault();
-								// submission logic
-							}}
-						>
-							<input
-								type="text"
-								className="input input-bordered w-full"
-								placeholder="Name"
-								name="name"
-								required
-							/>
-							<input
-								type="email"
-								className="input input-bordered w-full"
-								placeholder="Email"
-								name="email"
-								required
-							/>
-							<textarea
-								className="textarea textarea-bordered w-full resize-none"
-								placeholder="Message"
-								name="message"
-								required
-							></textarea>
-
-							<button
-								className="btn btn-primary mt-2 self-center"
-								type="submit"
-							>
-								<i className="fa fa-paper-plane mr-2"></i>
-								SEND
-							</button>
-						</form>
-
-						{/* Contact Info */}
+					<div className="flex justify-center">
+						{/* Contact Info Only */}
 						<div className="w-full max-w-md p-6 bg-base-200 rounded-lg shadow">
 							<ul className="space-y-6 text-base-content">
 								<li className="flex items-center gap-4 text-lg">
