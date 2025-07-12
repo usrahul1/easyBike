@@ -1,6 +1,6 @@
 # 🚲 EasyBike
 
-**EasyBike** is a peer-to-peer bike rental web app. It allows students to list their bikes, discover available bikes near them, send rental requests, and communicate in real time with bike owners.
+**EasyBike** is a peer-to-peer bike rental web app. It allows students to list their bikes, discover available bikes near them, send rental requests, and communicate and call in real time with bike owners.
 
 Hosted on:
 - [https://easy-bike.vercel.app](https://easy-bike.vercel.app)
@@ -12,7 +12,6 @@ Hosted on:
 - 🏍️ **List & Rent Bikes** – Users can list their bikes and rent others
 - 💬 **Real-time Chat & Call** – Contact bike owners via chat or audio call using Socket.IO
 - 📈 **Admin Dashboard** – See rental statistics, user locations, and demographics
-- 💳 **Razorpay Integration** – Secure payments for rentals
 - 🧾 **Rental History** – View past and current bike rentals
 - 📦 **Responsive UI** – Optimized for desktop and mobile
 
@@ -33,7 +32,6 @@ Hosted on:
 - `Firebase Admin SDK` for authentication and user data
 - `MongoDB` with `Mongoose`
 - `Socket.IO` for real-time features
-- `Razorpay` for payments
 - `Render.com` for hosting
 
 ---
@@ -82,3 +80,30 @@ FIREBASE_CLIENT_CERT_URL=https://www.googleapis.com/robot/v1/metadata/x509/your_
 FIREBASE_UNIVERSE_DOMAIN=googleapis.com
 
 ```
+
+
+
+## 📦 How to Run Locally
+
+### Backend (ExpressJS)
+
+```bash
+cd backend
+npm i
+npm run dev
+```
+Frontend (React with TS)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+
+## 👨‍💻 Contributions
+
+ **Sai Rahul Urumu**  
+  *Full Stack Developer – Implemented everything*  
+  [LinkedIn Profile](https://www.linkedin.com/in/usrahul)
+
+
